@@ -57,6 +57,11 @@ public class HelloController {
         }
     }
 
+    @FXML // function for quit button functionality
+    void quitApp() {
+        System.exit(0);
+    }
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 
