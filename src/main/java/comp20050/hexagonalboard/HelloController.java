@@ -14,6 +14,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.paint.Color;
 
 public class HelloController {
+    public static final int BOARD_RADIUS = 6;
+
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -34,6 +36,7 @@ public class HelloController {
     private Player redPlayer;
     private Player bluePlayer;
     private Player currentPlayer;
+    private Board board;
 
     @FXML
     void getHexID(MouseEvent event) {
@@ -67,6 +70,7 @@ public class HelloController {
 
         redPlayer = new Player(Color.RED);
         bluePlayer = new Player(Color.BLUE);
+        board = new Board(BOARD_RADIUS);
 
         redPlayer.setTurn(true);
         currentPlayer = redPlayer;
