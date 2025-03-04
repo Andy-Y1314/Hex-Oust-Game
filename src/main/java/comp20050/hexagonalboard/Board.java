@@ -1,28 +1,39 @@
 package comp20050.hexagonalboard;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class Board {
-    final ArrayList<ArrayList<Hexagon>> board;
+    ArrayList<ArrayList<Hexagon>> board;
     final int radius;
 
     public Board(int radius) {
         this.radius = radius;
-
-        ArrayList<ArrayList<Hexagon>> tempBoard = new ArrayList<ArrayList<Hexagon>>();
+        board = new ArrayList<ArrayList<Hexagon>>();
+        for (int i = -radius; i <= radius; i++) {
+            board.add(new ArrayList<Hexagon>());
+        }
         for (int q = -radius; q <= radius; q++) {
-            ArrayList<Hexagon> tempList = new ArrayList<>();
-
             for (int r = -radius; r <= radius; r++) {
                 for (int s = -radius; s <= radius; s++) {
                     if (q + r + s == 0) {
-                        tempList.add(new Hexagon(q, r, s));
+                        board.get(q + radius).add(new Hexagon(q, r, s));
                     }
                 }
             }
-            tempBoard.add(tempList);
         }
-        board = tempBoard;
+    }
+
+    public Hexagon getHexagonById(String id) {
+        for (ArrayList<Hexagon> list : board) {
+            for (Hexagon hex : list) {
+                if (hex.getId().equals(id)) {
+                    return hex;
+                }
+            }
+        }
+        return null;
     }
 
     public ArrayList<Hexagon> getNeighbours(Hexagon hex) {
@@ -43,9 +54,9 @@ public class Board {
         return neighbours;
     }
 
-    public boolean neighbourSameColour(Hexagon hex) {
+    public boolean sameColorNeighbourExists(Hexagon hex, Color color) {
         for (Hexagon hex2 : getNeighbours(hex)) {
-            if (hex.sameState(hex2)) {
+            if (hex2.getColor() == color) {
                 return true;
             }
         }
