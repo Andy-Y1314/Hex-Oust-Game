@@ -1,8 +1,10 @@
 package comp20050.hexagonalboard;
 
+import javafx.scene.paint.Color;
+
 public class Hexagon {
     final int q, r, s;
-    Player state;
+    Color color;
     final String id;
 
     public Hexagon(int q, int r, int s) {
@@ -10,7 +12,7 @@ public class Hexagon {
         this.r = r;
         this.s = s;
         this.id = coordinatesToId(q, r, s);
-        this.state = null;
+        this.color = Color.GRAY;
     }
 
     public int getQ() {return q;}
@@ -21,20 +23,24 @@ public class Hexagon {
 
     public String getId() {return id;}
 
-    public Player getState() {return state;}
+    public Color getColor() {return color;}
+
+    public void setColor(Color color) {this.color = color;}
 
 
-    public boolean sameState(Hexagon hex2) {
-        return hex2.getState() == this.getState();
+    public boolean sameColor(Hexagon hex2) {
+        return hex2.getColor() == this.getColor();
     }
 
     public static String coordinatesToId(int q, int r, int s) {
-        String id = "q";
-        id += (q < 0) ? "m" + q : Integer.toString(q);
-        id += "r";
-        id += (r < 0) ? "m" + r : Integer.toString(r);
-        id = "s";
-        id += (s < 0) ? "m" + s : Integer.toString(s);
-        return id;
+        StringBuilder sb = new StringBuilder();
+        sb.append("q");
+        sb.append((q < 0) ? "m" + Math.abs(q) : Integer.toString(q));
+        sb.append("r");
+        sb.append((r < 0) ? "m" + Math.abs(r) : Integer.toString(r));
+        sb.append("s");
+        sb.append((s < 0) ? "m" + Math.abs(s) : Integer.toString(s));
+
+        return sb.toString();
     }
 }
