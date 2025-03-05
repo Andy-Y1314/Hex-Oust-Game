@@ -43,7 +43,8 @@ public class HelloController {
         Parent parent = polygon.getParent();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (!board.sameColorNeighbourExists(hex, currentPlayer.getColor())) {
+        if (!board.sameColorNeighbourExists(hex, currentPlayer.getColor()) &&
+        hex.getColor() == Color.GRAY) {
             hex.setColor(currentPlayer.getColor());
             polygonSetColor(parent, hex.getId(), hex.getColor());
             switchTurn();
