@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1106.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp20050.hexagonalboard.HelloController">
    <children>
@@ -1003,7 +1004,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex134" fill="#c3c8cd" layoutX="432.0" layoutY="480.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm6r6s0" fill="#c3c8cd" layoutX="432.0" layoutY="480.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1019,7 +1020,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex144" fill="#c3c8cd" layoutX="432.0" layoutY="436.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm6r5s1" fill="#c3c8cd" layoutX="432.0" layoutY="436.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1035,7 +1036,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex154" fill="#c3c8cd" layoutX="432.0" layoutY="392.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm6r4s2" fill="#c3c8cd" layoutX="432.0" layoutY="392.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1051,7 +1052,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex164" fill="#c3c8cd" layoutX="432.0" layoutY="348.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm6r3s3" fill="#c3c8cd" layoutX="432.0" layoutY="348.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1067,7 +1068,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1313" fill="#c3c8cd" layoutX="470.0" layoutY="502.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm5r6sm1" fill="#c3c8cd" layoutX="470.0" layoutY="502.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1083,7 +1084,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1413" fill="#c3c8cd" layoutX="470.0" layoutY="458.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm5r5s0" fill="#c3c8cd" layoutX="470.0" layoutY="458.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1099,7 +1100,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1613" fill="#c3c8cd" layoutX="470.0" layoutY="370.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm5r3s2" fill="#c3c8cd" layoutX="470.0" layoutY="370.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1115,7 +1116,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1321" fill="#c3c8cd" layoutX="506.0" layoutY="524.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm4r6sm2" fill="#c3c8cd" layoutX="506.0" layoutY="524.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1131,7 +1132,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1421" fill="#c3c8cd" layoutX="506.0" layoutY="480.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm4r5sm1" fill="#c3c8cd" layoutX="506.0" layoutY="480.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1147,7 +1148,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1521" fill="#c3c8cd" layoutX="506.0" layoutY="436.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm4r4s0" fill="#c3c8cd" layoutX="506.0" layoutY="436.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1163,7 +1164,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1621" fill="#c3c8cd" layoutX="506.0" layoutY="392.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm4r3s1" fill="#c3c8cd" layoutX="506.0" layoutY="392.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1179,7 +1180,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex13111" fill="#c3c8cd" layoutX="544.0" layoutY="546.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm3r6sm3" fill="#c3c8cd" layoutX="544.0" layoutY="546.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1195,7 +1196,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex14111" fill="#c3c8cd" layoutX="544.0" layoutY="502.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm3r5sm2" fill="#c3c8cd" layoutX="544.0" layoutY="502.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1211,7 +1212,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex15111" fill="#c3c8cd" layoutX="544.0" layoutY="458.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm3r4sm1" fill="#c3c8cd" layoutX="544.0" layoutY="458.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1227,7 +1228,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex16111" fill="#c3c8cd" layoutX="544.0" layoutY="414.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm3r3s0" fill="#c3c8cd" layoutX="544.0" layoutY="414.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1243,7 +1244,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1331" fill="#c3c8cd" layoutX="582.0" layoutY="568.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm2r6sm4" fill="#c3c8cd" layoutX="582.0" layoutY="568.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1259,7 +1260,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1431" fill="#c3c8cd" layoutX="582.0" layoutY="524.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm2r5sm3" fill="#c3c8cd" layoutX="582.0" layoutY="524.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1275,7 +1276,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1531" fill="#c3c8cd" layoutX="582.0" layoutY="480.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm2r4sm2" fill="#c3c8cd" layoutX="582.0" layoutY="480.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1291,7 +1292,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1631" fill="#c3c8cd" layoutX="582.0" layoutY="436.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm2r3sm1" fill="#c3c8cd" layoutX="582.0" layoutY="436.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1307,7 +1308,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex13122" fill="#c3c8cd" layoutX="620.0" layoutY="590.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm1r6sm5" fill="#c3c8cd" layoutX="620.0" layoutY="590.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1323,7 +1324,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex14122" fill="#c3c8cd" layoutX="620.0" layoutY="546.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm1r5sm4" fill="#c3c8cd" layoutX="620.0" layoutY="546.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1339,7 +1340,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex15122" fill="#c3c8cd" layoutX="620.0" layoutY="502.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm1r4sm3" fill="#c3c8cd" layoutX="620.0" layoutY="502.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1355,7 +1356,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex16122" fill="#c3c8cd" layoutX="620.0" layoutY="458.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm1r3sm2" fill="#c3c8cd" layoutX="620.0" layoutY="458.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1371,7 +1372,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex172" fill="#c3c8cd" layoutX="470.0" layoutY="414.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm5r4s1" fill="#c3c8cd" layoutX="470.0" layoutY="414.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1387,7 +1388,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex173" fill="#c3c8cd" layoutX="620.0" layoutY="414.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm1r2sm1" fill="#c3c8cd" layoutX="620.0" layoutY="414.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1403,7 +1404,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex174" fill="#c3c8cd" layoutX="582.0" layoutY="392.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm2r2s0" fill="#c3c8cd" layoutX="582.0" layoutY="392.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1579,7 +1580,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex1341" fill="#c3c8cd" layoutX="431.0" layoutY="304.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm6r2s4" fill="#c3c8cd" layoutX="431.0" layoutY="304.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1643,7 +1644,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex13131" fill="#c3c8cd" layoutX="469.0" layoutY="326.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm5r2s3" fill="#c3c8cd" layoutX="469.0" layoutY="326.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1691,7 +1692,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex13211" fill="#c3c8cd" layoutX="505.0" layoutY="348.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm4r2s2" fill="#c3c8cd" layoutX="505.0" layoutY="348.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -1755,7 +1756,7 @@
             <Double fx:value="22" />
          </points>
       </Polygon>
-      <Polygon fx:id="hex131111" fill="#c3c8cd" layoutX="543.0" layoutY="370.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="qm3r2s1" fill="#c3c8cd" layoutX="543.0" layoutY="370.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>
             <Double fx:value="26" />
             <Double fx:value="0" />
@@ -2044,5 +2045,9 @@
          </points>
       </Polygon>
       <Button layoutX="282.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#quitApp" prefHeight="30.0" prefWidth="52.0" text="Quit" />
+      <Label fx:id="invalidMoveLabel" layoutX="278.0" layoutY="582.0" prefHeight="44.0" prefWidth="208.0" text="Invalid Cell Placement!" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -6,6 +6,8 @@ package comp20050.hexagonalboard;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class HelloController {
 
@@ -29,6 +32,10 @@ public class HelloController {
 
     @FXML
     private Label label;
+
+    @FXML
+    private Label invalidMoveLabel;
+
 
     // Create player instances
     private Player redPlayer;
@@ -48,6 +55,18 @@ public class HelloController {
             hex.setColor(currentPlayer.getColor());
             polygonSetColor(parent, hex.getId(), hex.getColor());
             switchTurn();
+        } else {
+            invalidMoveLabel.setVisible(true);
+            circle.setVisible(false);
+            label.setVisible(false);
+
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(event2 -> {
+                invalidMoveLabel.setVisible(false);
+                circle.setVisible(true);
+                label.setVisible(true);
+            });
+            pause.play();
         }
     }
 
@@ -93,7 +112,10 @@ public class HelloController {
         redPlayer.setTurn(true);
         currentPlayer = redPlayer;
 
+        invalidMoveLabel.setVisible(false);
+
         assert circle != null;
         assert label != null;
+        assert invalidMoveLabel != null;
     }
 }
