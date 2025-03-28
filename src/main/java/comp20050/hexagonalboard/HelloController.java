@@ -56,11 +56,11 @@ public class HelloController {
             polygonSetColor(parent, hex.getId(), hex.getColor());
             switchTurn();
         } else {
-           invalidMove();
+           displayInvalidMove();
         }
     }
 
-    public void invalidMove() {
+    public void displayInvalidMove() {
         invalidMoveLabel.setVisible(true);
         circle.setVisible(false);
         label.setVisible(false);
