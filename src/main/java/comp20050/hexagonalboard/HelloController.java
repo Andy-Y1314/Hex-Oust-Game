@@ -56,18 +56,22 @@ public class HelloController {
             polygonSetColor(parent, hex.getId(), hex.getColor());
             switchTurn();
         } else {
-            invalidMoveLabel.setVisible(true);
-            circle.setVisible(false);
-            label.setVisible(false);
-
-            PauseTransition pause = new PauseTransition(Duration.seconds(1));
-            pause.setOnFinished(event2 -> {
-                invalidMoveLabel.setVisible(false);
-                circle.setVisible(true);
-                label.setVisible(true);
-            });
-            pause.play();
+           invalidMove();
         }
+    }
+
+    public void invalidMove() {
+        invalidMoveLabel.setVisible(true);
+        circle.setVisible(false);
+        label.setVisible(false);
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        pause.setOnFinished(event2 -> {
+            invalidMoveLabel.setVisible(false);
+            circle.setVisible(true);
+            label.setVisible(true);
+        });
+        pause.play();
     }
 
     public void polygonSetColor(Parent parent, String id, Color color) {

@@ -2,7 +2,10 @@ package comp20050.hexagonalboard;
 
 import javafx.scene.paint.Color;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
 public class Board {
     ArrayList<ArrayList<Hexagon>> board;
@@ -62,4 +65,23 @@ public class Board {
         }
         return false;
     }
+
+    public List<Hexagon> getIslands(Hexagon hex) {
+        List<Hexagon> islands = new ArrayList<>();
+        List<Hexagon> queue = new ArrayList<>();
+
+        queue.add(hex);
+        islands.add(hex);
+        while (!queue.isEmpty()) {
+            Hexagon currentHex = queue.removeFirst();
+            for (Hexagon hex2 : getNeighbours(currentHex)) {
+                if (hex2.getColor().equals(hex.getColor()) && (!islands.contains(hex2))) {
+                    islands.add(hex2);
+                    queue.add(hex2);
+                }
+            }
+        }
+        return islands;
+    }
+
 }
