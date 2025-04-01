@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1106.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp20050.hexagonalboard.HelloController">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1106.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp20050.hexagonalboard.HelloController">
    <children>
       <Polygon fx:id="q0r0s0" fill="#c3c8cd" layoutX="659.0" layoutY="348.0" onMouseClicked="#getHexID" stroke="BLACK" strokeType="INSIDE">
          <points>

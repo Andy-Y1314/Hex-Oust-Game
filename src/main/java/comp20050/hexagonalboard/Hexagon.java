@@ -2,6 +2,9 @@ package comp20050.hexagonalboard;
 
 import javafx.scene.paint.Color;
 
+import static comp20050.hexagonalboard.HelloController.colorGrey;
+
+
 public class Hexagon {
     final int q, r, s;
     Color color;
@@ -12,7 +15,7 @@ public class Hexagon {
         this.r = r;
         this.s = s;
         this.id = coordinatesToId(q, r, s);
-        this.color = Color.GRAY;
+        this.color = colorGrey;
     }
 
     public int getQ() {return q;}

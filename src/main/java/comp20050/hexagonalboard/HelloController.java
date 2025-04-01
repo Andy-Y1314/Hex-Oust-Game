@@ -28,6 +28,9 @@ public class HelloController {
     private URL location;
 
     @FXML
+    private AnchorPane parent;
+
+    @FXML
     private Circle circle;
 
     @FXML
@@ -36,6 +39,10 @@ public class HelloController {
     @FXML
     private Label invalidMoveLabel;
 
+    @FXML
+    private Polygon q0r0s0;
+
+    public static Color colorGrey;
 
     // Create player instances
     private Player redPlayer;
@@ -51,7 +58,7 @@ public class HelloController {
         Hexagon hex = board.getHexagonById(polygon.getId());
 
         if (!board.sameColorNeighbourExists(hex, currentPlayer.getColor()) &&
-        hex.getColor() == Color.GRAY) {
+        hex.getColor() == colorGrey) {
             hex.setColor(currentPlayer.getColor());
             polygonSetColor(parent, hex.getId(), hex.getColor());
             switchTurn();
@@ -109,6 +116,8 @@ public class HelloController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+        colorGrey = (Color) q0r0s0.getFill();
+
         redPlayer = new Player(Color.RED);
         bluePlayer = new Player(Color.BLUE);
         board = new Board(HelloApplication.BOARD_RADIUS);
