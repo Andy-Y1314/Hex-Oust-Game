@@ -30,6 +30,8 @@ public class Hexagon {
 
     public void setColor(Color color) {this.color = color;}
 
+    public boolean isEmpty() {return this.color == colorGrey;}
+
 
     public boolean sameColor(Hexagon hex2) {
         return hex2.getColor() == this.getColor();
