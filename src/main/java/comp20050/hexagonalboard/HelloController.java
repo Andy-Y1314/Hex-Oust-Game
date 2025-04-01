@@ -5,6 +5,7 @@
 package comp20050.hexagonalboard;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.animation.PauseTransition;
@@ -54,13 +55,38 @@ public class HelloController {
     void getHexID(MouseEvent event) {
         Polygon polygon = (Polygon) event.getSource();
 
-        Parent parent = polygon.getParent();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        /*if (!board.sameColorNeighbourExists(hex, currentPlayer.getColor()) &&
-        hex.getColor() == colorGrey) {
+        if (!hex.isEmpty()) {
+            displayInvalidMove();
+        } else {
             hex.setColor(currentPlayer.getColor());
-            polygonSetColor(parent, hex.getId(), hex.getColor());
+            List<Hexagon> hexToDelete = board.validateMove(hex);
+
+            if (hexToDelete == null) {
+                hex.setColor(colorGrey);
+                displayInvalidMove();
+            } else {
+                polygonSetColor(hex.getId(), hex.getColor());
+
+                for (Hexagon toDelete : hexToDelete) {
+                    toDelete.setColor(colorGrey);
+                    polygonSetColor(toDelete.getId(), colorGrey);
+                }
+
+                if (hexToDelete.isEmpty()) {
+                    switchTurn();
+                }
+            }
+        }
+
+
+        /*
+        if (!board.sameColorNeighbourExists(hex) &&
+        hex.getColor() == colorGrey) {
+            System.out.println("HERE");
+            hex.setColor(currentPlayer.getColor());
+            polygonSetColor(hex.getId(), hex.getColor());
             switchTurn();
         } else {
            displayInvalidMove();
@@ -84,7 +110,7 @@ public class HelloController {
         pause.play();
     }
 
-    public void polygonSetColor(Parent parent, String id, Color color) {
+    public void polygonSetColor(String id, Color color) {
         for (Node n : parent.getChildrenUnmodifiable()) {
             if (n instanceof Polygon && n.getId().equals(id)) {
                 ((Polygon) n).setFill(color);

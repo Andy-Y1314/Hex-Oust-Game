@@ -92,7 +92,7 @@ public class Board {
         return output;
     }
 
-    public List<Hexagon> validateMoves(Hexagon hex) {
+    public List<Hexagon> validateMove(Hexagon hex) {
         if (!sameColorNeighbourExists(hex)) {
             return new ArrayList<Hexagon>();
         }
