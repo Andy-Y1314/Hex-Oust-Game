@@ -56,4 +56,8 @@ public class Hexagon {
             return colorGrey;
         }
     }
+
+    public boolean isEmpty() {
+        return color == colorGrey;
+    }
 }
