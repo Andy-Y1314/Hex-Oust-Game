@@ -46,4 +46,14 @@ public class Hexagon {
 
         return sb.toString();
     }
+
+    public Color getEnemyColor(Hexagon hex) {
+        if (hex.getColor() == Color.RED) {
+            return Color.BLUE;
+        } else if (hex.getColor() == Color.BLUE) {
+            return Color.RED;
+        } else {
+            return colorGrey;
+        }
+    }
 }
