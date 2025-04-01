@@ -47,10 +47,10 @@ public class Hexagon {
         return sb.toString();
     }
 
-    public Color getEnemyColor(Hexagon hex) {
-        if (hex.getColor() == Color.RED) {
+    public Color getEnemyColor() {
+        if (this.getColor() == Color.RED) {
             return Color.BLUE;
-        } else if (hex.getColor() == Color.BLUE) {
+        } else if (this.getColor() == Color.BLUE) {
             return Color.RED;
         } else {
             return colorGrey;
