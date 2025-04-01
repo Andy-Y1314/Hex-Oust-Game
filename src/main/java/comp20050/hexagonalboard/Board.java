@@ -84,4 +84,17 @@ public class Board {
         return islands;
     }
 
+    public List<Hexagon> getEnemyHexagons(List<Hexagon> island) {
+        List<Hexagon> output = new ArrayList<>();
+        for (Hexagon currentHex : island) {
+            for (Hexagon neighbour : getNeighbours(currentHex)) {
+                if (currentHex.getEnemyColor() == neighbour.getColor() && !(output.contains(neighbour))) {
+                    output.add(neighbour);
+                }
+            }
+        }
+        return output;
+    }
+
+
 }
