@@ -97,6 +97,8 @@ public class Board {
     }
 
     public List<Hexagon> validateMove(Hexagon hex, Color currPlayerCol) {
+        if (!hex.isEmpty()) return null;
+
         hex.setColor(currPlayerCol);
 
         if (!sameColorNeighbourExists(hex)) {
@@ -130,6 +132,4 @@ public class Board {
         hex.setColorGray();
         return hexToRemove;
     }
-
-
 }

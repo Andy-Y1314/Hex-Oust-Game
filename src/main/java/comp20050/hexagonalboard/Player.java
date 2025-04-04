@@ -3,7 +3,7 @@ package comp20050.hexagonalboard;
 import javafx.scene.paint.Color;
 
 public class Player {
-    private Color color;
+    private final Color color;
     private boolean isTurn;
 
     public Player(Color color) {
@@ -13,6 +13,10 @@ public class Player {
 
     public Color getColor() {
         return color;
+    }
+
+    public Color getEnemyColor() {
+        return (color == Color.RED) ? Color.BLUE : Color.RED;
     }
 
     public boolean isTurn() {

@@ -50,37 +50,45 @@ public class Controller {
     private Player currentPlayer;
     private Board board;
 
+    private int numRedHex = 0;
+    private int numBlueHex = 0;
+    private boolean isFirstMove;
+    private boolean gameOn;
+
     @FXML
     void getHexID(MouseEvent event) {
-        Polygon polygon = (Polygon) event.getSource();
+        if (!gameOn) return;
 
+        Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (!hex.isEmpty()) {
+        List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.getColor());
+
+        if (hexToDelete == null) {
             displayInvalidMove();
         } else {
+            hex.setColor(currentPlayer.getColor());
+            updateHexCounter(currentPlayer.getColor(), true);
+            polygonSetColor(hex.getId(), hex.getColor());
 
+            for (Hexagon toDelete : hexToDelete) {
+                toDelete.setColor(colorGrey);
+                updateHexCounter(currentPlayer.getEnemyColor(), false);
+                polygonSetColor(toDelete.getId(), colorGrey);
+            }
 
-            List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.getColor());
-
-
-            if (hexToDelete == null) {
-                displayInvalidMove();
-            } else {
-                hex.setColor(currentPlayer.getColor());
-                polygonSetColor(hex.getId(), hex.getColor());
-
-                for (Hexagon toDelete : hexToDelete) {
-                    toDelete.setColor(colorGrey);
-                    polygonSetColor(toDelete.getId(), colorGrey);
-                }
-
-                if (hexToDelete.isEmpty()) {
-                    switchTurn();
-                }
+            if (hexToDelete.isEmpty()) {
+                switchTurn();
             }
         }
 
+        if (!isFirstMove && numRedHex == 0) {
+            gameOn = false;
+            displayInvalidMove();
+        } else if (!isFirstMove && numBlueHex == 0) {
+            gameOn = false;
+            displayInvalidMove();
+        }
 
         /*
         if (!board.sameColorNeighbourExists(hex) &&
@@ -92,10 +100,15 @@ public class Controller {
         } else {
            displayInvalidMove();
         }*/
-
-
     }
 
+    public void updateHexCounter(Color playerCol, boolean isIncrement) {
+        if (playerCol == Color.RED) {
+            numRedHex += (isIncrement) ? 1 : -1;
+        } else {
+            numBlueHex += (isIncrement) ? 1 : -1;
+        }
+    }
 
     public void displayInvalidMove() {
         invalidMoveLabel.setVisible(true);
@@ -134,6 +147,8 @@ public class Controller {
             currentPlayer = redPlayer;
             currentPlayer.setTurn(true);
 
+            isFirstMove = false;
+
             circle.setFill(Color.RED);
             label.setText("Red Player's move now!");
         }
@@ -151,6 +166,9 @@ public class Controller {
         redPlayer = new Player(Color.RED);
         bluePlayer = new Player(Color.BLUE);
         board = new Board(Application.BOARD_RADIUS);
+
+        gameOn = true;
+        isFirstMove = true;
 
         redPlayer.setTurn(true);
         currentPlayer = redPlayer;
