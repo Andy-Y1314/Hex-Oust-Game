@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>comp20050.hexagonalboard/comp20050.hexagonalboard.HelloApplication</mainClass>
+                            <mainClass>comp20050.hexagonalboard/comp20050.hexagonalboard.Application</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'hello-view.fxml' Controller Class
+ * Sample Skeleton for 'board-view.fxml' Controller Class
  */
 
 package comp20050.hexagonalboard;
@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +19,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class HelloController {
+public class Controller {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -60,13 +59,15 @@ public class HelloController {
         if (!hex.isEmpty()) {
             displayInvalidMove();
         } else {
-            hex.setColor(currentPlayer.getColor());
-            List<Hexagon> hexToDelete = board.validateMove(hex);
+
+
+            List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.getColor());
+
 
             if (hexToDelete == null) {
-                hex.setColor(colorGrey);
                 displayInvalidMove();
             } else {
+                hex.setColor(currentPlayer.getColor());
                 polygonSetColor(hex.getId(), hex.getColor());
 
                 for (Hexagon toDelete : hexToDelete) {
@@ -149,7 +150,7 @@ public class HelloController {
 
         redPlayer = new Player(Color.RED);
         bluePlayer = new Player(Color.BLUE);
-        board = new Board(HelloApplication.BOARD_RADIUS);
+        board = new Board(Application.BOARD_RADIUS);
 
         redPlayer.setTurn(true);
         currentPlayer = redPlayer;

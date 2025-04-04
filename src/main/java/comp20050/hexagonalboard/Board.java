@@ -1,7 +1,11 @@
 package comp20050.hexagonalboard;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static comp20050.hexagonalboard.Controller.colorGrey;
 
 public class Board {
     ArrayList<ArrayList<Hexagon>> board;
@@ -92,8 +96,11 @@ public class Board {
         return output;
     }
 
-    public List<Hexagon> validateMove(Hexagon hex) {
+    public List<Hexagon> validateMove(Hexagon hex, Color currPlayerCol) {
+        hex.setColor(currPlayerCol);
+
         if (!sameColorNeighbourExists(hex)) {
+            hex.setColorGray();
             return new ArrayList<Hexagon>();
         }
 
@@ -101,11 +108,13 @@ public class Board {
         List<Hexagon> enemyHexagons = getEnemyHexagons(island);
 
         if (enemyHexagons.isEmpty()) {
+            hex.setColorGray();
             return null;
         }
 
         for (Hexagon enemyHex : enemyHexagons) {
             if (island.size() <= getIsland(enemyHex).size()) {
+                hex.setColorGray();
                 return null;
             }
         }
@@ -118,6 +127,7 @@ public class Board {
                 }
             }
         }
+        hex.setColorGray();
         return hexToRemove;
     }
 

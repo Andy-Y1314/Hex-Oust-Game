@@ -2,7 +2,7 @@ package comp20050.hexagonalboard;
 
 import javafx.scene.paint.Color;
 
-import static comp20050.hexagonalboard.HelloController.colorGrey;
+import static comp20050.hexagonalboard.Controller.colorGrey;
 
 
 public class Hexagon {
@@ -29,6 +29,8 @@ public class Hexagon {
     public Color getColor() {return color;}
 
     public void setColor(Color color) {this.color = color;}
+
+    public void setColorGray() {this.color = colorGrey;}
 
     public boolean isEmpty() {return this.color == colorGrey;}
 
