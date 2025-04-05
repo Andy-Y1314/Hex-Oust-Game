@@ -57,6 +57,7 @@ public class Controller {
 
     @FXML
     void getHexID(MouseEvent event) {
+
         if (!gameOn) return;
 
         Polygon polygon = (Polygon) event.getSource();
@@ -101,6 +102,7 @@ public class Controller {
            displayInvalidMove();
         }*/
     }
+
 
     public void updateHexCounter(Color playerCol, boolean isIncrement) {
         if (playerCol == Color.RED) {
