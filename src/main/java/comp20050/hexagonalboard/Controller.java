@@ -5,12 +5,14 @@
 package comp20050.hexagonalboard;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -149,7 +151,8 @@ public class Controller {
             currentPlayer = redPlayer;
             currentPlayer.setTurn(true);
 
-            isFirstMove = false;
+            if (isFirstMove && (numBlueHex + numRedHex == 2))
+                isFirstMove = false;
 
             circle.setFill(Color.RED);
             label.setText("Red Player's move now!");
@@ -159,6 +162,23 @@ public class Controller {
     @FXML // function for quit button functionality
     void quitApp() {
         System.exit(0);
+    }
+
+    @FXML
+    void resetGame() {
+        for (ArrayList<Hexagon> row : board.board) {
+            for (Hexagon hex : row) {
+                hex.setColorGray();
+                polygonSetColor(hex.getId(), hex.getColor());
+            }
+        }
+        gameOn = true;
+        numRedHex = 0;
+        numBlueHex = 0;
+        isFirstMove = true;
+        if (currentPlayer == bluePlayer) {
+            switchTurn();
+        }
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
