@@ -91,5 +91,23 @@ public class UnitTests {
         assertEquals(expectedIsland, islandIds);
     }
 
+    @Test
+    public void testSameColorNeighbourExists() {
+        Board input = new Board(7);
+
+        Hexagon hex1 = input.getHexagonById("q0r0s0");
+
+        input.getHexagonById("q0r0s0").setColor(Color.RED);
+        input.getHexagonById("qm1r0s1").setColor(Color.RED);
+
+        Hexagon hex2 = input.getHexagonById("qm3r3s0");
+
+        input.getHexagonById("qm2r2s0").setColor(Color.RED);
+        input.getHexagonById("qm3r3s0").setColor(Color.BLUE);
+
+        assertTrue(input.sameColorNeighbourExists(hex1));
+        assertFalse(input.sameColorNeighbourExists(hex2));
+    }
+
 
 }
