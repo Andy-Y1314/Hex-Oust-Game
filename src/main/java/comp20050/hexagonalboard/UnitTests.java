@@ -42,6 +42,11 @@ public class UnitTests {
 
         List<Hexagon> hexToDelete = input.validateMove(hex, currPlayerColor);
 
+        /*
+        - Copied directly from Controller class logic (getHexId)
+        - Frontend / UI functionality has been commented out
+         */
+
         if (hexToDelete == null) {
             //displayInvalidMove();
         } else {
