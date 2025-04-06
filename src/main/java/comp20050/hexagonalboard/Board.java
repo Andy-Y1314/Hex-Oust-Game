@@ -88,7 +88,7 @@ public class Board {
         while (!queue.isEmpty()) {
             Hexagon currentHex = queue.removeFirst();
             for (Hexagon hex2 : getNeighbours(currentHex)) {
-                if (hex2.getColor().equals(hex.getColor()) && (!islands.contains(hex2))) {
+                if (hex2.getColor() == hex.getColor() && (!islands.contains(hex2))) {
                     islands.add(hex2);
                     queue.add(hex2);
                 }
