@@ -59,7 +59,6 @@ public class Controller {
 
     @FXML
     void getHexID(MouseEvent event) {
-
         if (!gameOn) return;
 
         Polygon polygon = (Polygon) event.getSource();
@@ -85,24 +84,7 @@ public class Controller {
             }
         }
 
-        if (!isFirstMove && numRedHex == 0) {
-            gameOn = false;
-            displayInvalidMove();
-        } else if (!isFirstMove && numBlueHex == 0) {
-            gameOn = false;
-            displayInvalidMove();
-        }
-
-        /*
-        if (!board.sameColorNeighbourExists(hex) &&
-        hex.getColor() == colorGrey) {
-            System.out.println("HERE");
-            hex.setColor(currentPlayer.getColor());
-            polygonSetColor(hex.getId(), hex.getColor());
-            switchTurn();
-        } else {
-           displayInvalidMove();
-        }*/
+        if (!isFirstMove && (numRedHex == 0 || numBlueHex == 0)) gameOn = false;
     }
 
 

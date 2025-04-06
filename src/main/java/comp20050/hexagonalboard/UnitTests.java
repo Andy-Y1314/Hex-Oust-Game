@@ -29,11 +29,14 @@ public class UnitTests {
 
     @Test
     public void placingStoneNonCapturing() {
+        String inputId = "q0r0s0";
+        Color currPlayerColor = Color.RED;
+
         Board input = new Board(7);
+
         Board expected = new Board(7);
         expected.getHexagonById("q0r0s0").setColor(Color.RED);
-        Color currPlayerColor = Color.RED;
-        String inputId = "q0r0s0";
+
 
         Hexagon hex = input.getHexagonById(inputId);
 
@@ -62,6 +65,7 @@ public class UnitTests {
 
         Hexagon hex = input.getHexagonById("q0r0s0");
 
+        //Creating a list of all the expected neighbours the 'getNeighbours' method should return for hexagon q0r0s0
         List<Hexagon> neighbours = input.getNeighbours(hex);
         List<String> neighbourIds = neighbours.stream().map(Hexagon::getId).toList();
 
@@ -72,19 +76,18 @@ public class UnitTests {
 
     @Test
     public void testGetIsland() {
-        Board input = new Board(7);
+        Board customBoard = new Board(7);
 
-        Hexagon hex = input.getHexagonById("q0r0s0");
+        customBoard.getHexagonById("q0r0s0").setColor(Color.RED);
+        customBoard.getHexagonById("qm1r0s1").setColor(Color.RED);
+        customBoard.getHexagonById("qm1r1s0").setColor(Color.RED);
 
-        input.getHexagonById("q0r0s0").setColor(Color.RED);
-        input.getHexagonById("qm1r0s1").setColor(Color.RED);
-        input.getHexagonById("qm1r1s0").setColor(Color.RED);
+        customBoard.getHexagonById("q0r1sm1").setColor(Color.BLUE);
 
-        input.getHexagonById("q0r1sm1").setColor(Color.BLUE);
+        Hexagon hex = customBoard.getHexagonById("q0r0s0");
 
-        List<Hexagon> island = input.getIsland(hex);
+        List<Hexagon> island = customBoard.getIsland(hex);
         List<String> islandIds = island.stream().map(Hexagon::getId).toList();
-
 
         List<String> expectedIsland = List.of("q0r0s0", "qm1r0s1", "qm1r1s0");
 

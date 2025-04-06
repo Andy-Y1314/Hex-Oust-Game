@@ -40,15 +40,9 @@ public class Hexagon {
     }
 
     public static String coordinatesToId(int q, int r, int s) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("q");
-        sb.append((q < 0) ? "m" + Math.abs(q) : Integer.toString(q));
-        sb.append("r");
-        sb.append((r < 0) ? "m" + Math.abs(r) : Integer.toString(r));
-        sb.append("s");
-        sb.append((s < 0) ? "m" + Math.abs(s) : Integer.toString(s));
-
-        return sb.toString();
+        return "q" + ((q < 0) ? "m" + Math.abs(q) : Integer.toString(q)) +
+                "r" + ((r < 0) ? "m" + Math.abs(r) : Integer.toString(r)) +
+                "s" + ((s < 0) ? "m" + Math.abs(s) : Integer.toString(s));
     }
 
     public Color getEnemyColor() {
