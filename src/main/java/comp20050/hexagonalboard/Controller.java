@@ -13,6 +13,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -85,6 +86,16 @@ public class Controller {
         }
 
         if (!isFirstMove && (numRedHex == 0 || numBlueHex == 0)) gameOn = false;
+
+        if (!gameOn) {
+            Alert winner = new Alert(Alert.AlertType.CONFIRMATION);
+
+            winner.setTitle("HexOust");
+            winner.setHeaderText("Congratulations!");
+            winner.setContentText(currentPlayer+" player wins!");
+
+            winner.showAndWait();
+        }
     }
 
 
