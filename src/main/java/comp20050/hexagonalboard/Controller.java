@@ -180,7 +180,7 @@ public class Controller {
         Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (board.validateMove(hex, currentPlayer.getColor()) != null) {
+        if (gameOn && board.validateMove(hex, currentPlayer.getColor()) != null) {
             previewMove(hex.getId());
         }
     }
