@@ -30,12 +30,10 @@ public class Player {
     @Override
     public String toString() {
         if (this.getColor() == Color.BLUE) {
-            return "Blue";
-        } else if (this.getColor() == Color.RED) {
-            return "Red";
-        }
-        else {
-            return "NULL";
+            return "Blue Player";
+        } else {
+            return "Red Player";
         }
     }
+
 }

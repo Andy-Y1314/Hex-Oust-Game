@@ -7,12 +7,14 @@ package comp20050.hexagonalboard;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -88,16 +90,27 @@ public class Controller {
         if (!isFirstMove && (numRedHex == 0 || numBlueHex == 0)) gameOn = false;
 
         if (!gameOn) {
-            Alert winner = new Alert(Alert.AlertType.CONFIRMATION);
-
-            winner.setTitle("HexOust");
-            winner.setHeaderText("Congratulations!");
-            winner.setContentText(currentPlayer+" player wins!");
-
-            winner.showAndWait();
+            gameWinDisplay();
         }
     }
 
+    public void gameWinDisplay() {
+        Alert winner = new Alert(Alert.AlertType.INFORMATION);
+        winner.setTitle("HexOust");
+        winner.setHeaderText(currentPlayer + " wins!");
+
+
+        ButtonType restartButton = new ButtonType("Reset");
+        ButtonType exitButton = new ButtonType("Quit");
+        winner.getButtonTypes().setAll(restartButton, exitButton);
+
+        Optional<ButtonType> result = winner.showAndWait();
+        if (result.get() == exitButton) {
+            quitApp();
+        } else {
+            resetGame();
+        }
+    }
 
     public void updateHexCounter(Color playerCol, boolean isIncrement) {
         if (playerCol == Color.RED) {
