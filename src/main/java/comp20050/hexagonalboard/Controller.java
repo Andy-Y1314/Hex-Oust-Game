@@ -173,6 +173,43 @@ public class Controller {
             switchTurn();
         }
     }
+    /*
+
+    @FXML
+    void getMovePreview(MouseEvent event) {
+        Polygon polygon = (Polygon) event.getSource();
+        Hexagon hex = board.getHexagonById(polygon.getId());
+
+        if (hex.isEmpty() && (board.validateMove(hex, currentPlayer.getColor()) != null)) {
+            previewMove(hex);
+        }
+    }
+
+    @FXML void resetMovePreview(MouseEvent event) {
+        Polygon polygon = (Polygon) event.getSource();
+        Hexagon hex = board.getHexagonById(polygon.getId());
+
+        if (hex.getColor() == Color.LIGHTBLUE || hex.getColor() == Color.PINK) {
+            hex.setColorGray();
+        }
+    }
+
+
+
+
+//**************
+
+public void previewMove(Hexagon hex) {
+        if (currentPlayer.getColor() == Color.BLUE) {
+            hex.setColor(Color.LIGHTBLUE);
+        }
+        else {
+            hex.setColor(Color.PINK);
+        }
+    }
+
+
+     */
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
