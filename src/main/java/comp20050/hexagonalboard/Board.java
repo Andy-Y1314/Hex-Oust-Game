@@ -109,6 +109,10 @@ public class Board {
         return output;
     }
 
+    public boolean isValidMove(Hexagon hex, Color currPlayerCol) {
+        return validateMove(hex, currPlayerCol) != null;
+    }
+
     public List<Hexagon> validateMove(Hexagon hex, Color currPlayerCol) {
         if (!hex.isEmpty()) return null;
 

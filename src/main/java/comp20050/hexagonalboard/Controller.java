@@ -173,43 +173,35 @@ public class Controller {
             switchTurn();
         }
     }
-    /*
+
 
     @FXML
     void getMovePreview(MouseEvent event) {
         Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (hex.isEmpty() && (board.validateMove(hex, currentPlayer.getColor()) != null)) {
-            previewMove(hex);
+        if (board.validateMove(hex, currentPlayer.getColor()) != null) {
+            previewMove(hex.getId());
         }
     }
 
-    @FXML void resetMovePreview(MouseEvent event) {
+    @FXML
+    void resetMovePreview(MouseEvent event) {
         Polygon polygon = (Polygon) event.getSource();
-        Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (hex.getColor() == Color.LIGHTBLUE || hex.getColor() == Color.PINK) {
-            hex.setColorGray();
+        if (polygon.getFill() == Color.LIGHTBLUE || polygon.getFill() == Color.PINK) {
+            polygonSetColor(polygon.getId(), colorGrey);
         }
     }
 
-
-
-
-//**************
-
-public void previewMove(Hexagon hex) {
+    public void previewMove(String polygonId) {
         if (currentPlayer.getColor() == Color.BLUE) {
-            hex.setColor(Color.LIGHTBLUE);
-        }
-        else {
-            hex.setColor(Color.PINK);
+            polygonSetColor(polygonId, Color.LIGHTBLUE);
+        } else {
+            polygonSetColor(polygonId, Color.PINK);
         }
     }
 
-
-     */
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
