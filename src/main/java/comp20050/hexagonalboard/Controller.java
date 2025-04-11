@@ -7,21 +7,20 @@ package comp20050.hexagonalboard;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
-
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Controller {
@@ -95,21 +94,28 @@ public class Controller {
     }
 
     public void gameWinDisplay() {
-        Alert winner = new Alert(Alert.AlertType.INFORMATION);
-        winner.setTitle("HexOust");
-        winner.setHeaderText(currentPlayer + " wins!");
+        Stage window = new Stage();
+        VBox layout = new VBox(10);
 
+        Label winnersMessage = new Label(currentPlayer + " wins!");
 
-        ButtonType restartButton = new ButtonType("Reset");
-        ButtonType exitButton = new ButtonType("Quit");
-        winner.getButtonTypes().setAll(restartButton, exitButton);
+        Button restartButton = new Button("Reset");
+        Button exitButton = new Button("Quit");
 
-        Optional<ButtonType> result = winner.showAndWait();
-        if (result.get() == exitButton) {
-            quitApp();
-        } else {
+        restartButton.setOnAction(e -> {
             resetGame();
-        }
+            window.close();
+        });
+
+        exitButton.setOnAction(e -> {
+            quitApp();
+        });
+
+        layout.getChildren().addAll(winnersMessage, restartButton, exitButton);
+
+        Scene scene = new Scene(layout, 200, 150);
+        window.setScene(scene);
+        window.show();
     }
 
     public void updateHexCounter(Color playerCol, boolean isIncrement) {
