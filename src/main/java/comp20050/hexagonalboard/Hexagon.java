@@ -6,9 +6,9 @@ import static comp20050.hexagonalboard.Controller.colorGrey;
 
 
 public class Hexagon {
-    final int q, r, s;
-    Color color;
-    final String id;
+    private final int q, r, s;
+    private Color color;
+    private final String id;
 
     public Hexagon(int q, int r, int s) {
         this.q = q;

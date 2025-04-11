@@ -231,9 +231,5 @@ public class Controller {
         currentPlayer = redPlayer;
 
         invalidMoveLabel.setVisible(false);
-
-        assert circle != null;
-        assert label != null;
-        assert invalidMoveLabel != null;
     }
 }

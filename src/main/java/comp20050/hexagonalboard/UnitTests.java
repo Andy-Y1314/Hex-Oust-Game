@@ -81,17 +81,17 @@ public class UnitTests {
 
     @Test
     public void testGetIsland() {
-        Board customBoard = new Board(7);
+        Board testBoard = new Board(7);
 
-        customBoard.getHexagonById("q0r0s0").setColor(Color.RED);
-        customBoard.getHexagonById("qm1r0s1").setColor(Color.RED);
-        customBoard.getHexagonById("qm1r1s0").setColor(Color.RED);
+        testBoard.getHexagonById("q0r0s0").setColor(Color.RED);
+        testBoard.getHexagonById("qm1r0s1").setColor(Color.RED);
+        testBoard.getHexagonById("qm1r1s0").setColor(Color.RED);
 
-        customBoard.getHexagonById("q0r1sm1").setColor(Color.BLUE);
+        testBoard.getHexagonById("q0r1sm1").setColor(Color.BLUE);
 
-        Hexagon hex = customBoard.getHexagonById("q0r0s0");
+        Hexagon hex = testBoard.getHexagonById("q0r0s0");
 
-        List<Hexagon> island = customBoard.getIsland(hex);
+        List<Hexagon> island = testBoard.getIsland(hex);
         List<String> islandIds = island.stream().map(Hexagon::getId).toList();
 
         List<String> expectedIsland = List.of("q0r0s0", "qm1r0s1", "qm1r1s0");
