@@ -39,19 +39,6 @@ public class Board {
         return null;
     }
 
-    public boolean equalsBoard(Board board) {
-        if (this.radius != board.radius) return false;
-
-        for (int i = 0; i < this.board.size(); i++) {
-            for (int j = 0; j < this.board.get(i).size(); j++) {
-                if (!this.board.get(i).get(j).sameColor(board.board.get(i).get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public ArrayList<Hexagon> getNeighbours(Hexagon hexagon) {
         ArrayList<Hexagon> neighbours = new ArrayList<Hexagon>();
         for (ArrayList<Hexagon> list : board) {

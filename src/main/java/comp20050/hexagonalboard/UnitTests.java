@@ -12,19 +12,24 @@ import static org.junit.Assert.*;
 public class UnitTests {
 
     @Test
-    public void confirmEqualsBoardWorks() {
-        //All hexagons are gray by default
-        Board input = new Board(7);
-        Board expected = new Board(7);
-        assertTrue(input.equalsBoard(expected));
+    public void testCoordinatesToId() {
+        int q = 4, r = -1, s = -3;
+        String expected = "q4rm1sm3";
 
-        input.getHexagonById("q0r0s0").setColor(Color.RED);
-        expected.getHexagonById("q1rm1s0").setColor(Color.BLUE);
-        assertFalse(input.equalsBoard(expected));
+        assertEquals(expected, Hexagon.coordinatesToId(q, r, s));
+    }
 
-        input.getHexagonById("q1rm1s0").setColor(Color.BLUE);
-        expected.getHexagonById("q0r0s0").setColor(Color.RED);
-        assertTrue(input.equalsBoard(expected));
+    @Test
+    public void testGetEnemyColor() {
+        //Hexagon q,r,s values are trivial
+        Hexagon redHex = new Hexagon(0,0,0);
+        Hexagon blueHex = new Hexagon(0,0,0);
+
+        redHex.setColor(Color.RED);
+        blueHex.setColor(Color.BLUE);
+
+        assertEquals(Color.BLUE, redHex.getEnemyColor());
+        assertEquals(Color.RED, blueHex.getEnemyColor());
     }
 
     @Test
@@ -60,6 +65,16 @@ public class UnitTests {
                 //polygonSetColor(toDelete.getId(), colorGrey);
             }
         }
+
+        /*
+        for (int i = 0; i < this.board.size(); i++) {
+            for (int j = 0; j < this.board.get(i).size(); j++) {
+                if (!this.board.get(i).get(j).sameColor(board.board.get(i).get(j))) {
+                    return false;
+                }
+            }
+        }
+         */
 
         assertTrue(input.equalsBoard(expected));
     }
