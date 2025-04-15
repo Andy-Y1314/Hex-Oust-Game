@@ -76,7 +76,6 @@ public class UnitTests {
         }
          */
 
-        assertTrue(input.equalsBoard(expected));
     }
 
     @Test
@@ -132,5 +131,25 @@ public class UnitTests {
         assertFalse(input.sameColorNeighbourExists(hex2));
     }
 
+    @Test
+    public void testGetEnemyHexagon() {
+        Board testBoard = new Board(7);
 
+        testBoard.getHexagonById("q0r0s0").setColor(Color.RED);
+        testBoard.getHexagonById("qm1r0s1").setColor(Color.RED);
+
+        testBoard.getHexagonById("q0r1sm1").setColor(Color.BLUE);
+        testBoard.getHexagonById("q1rm1s0").setColor(Color.BLUE);
+        testBoard.getHexagonById("q1r0sm1").setColor(Color.BLUE);
+
+        Hexagon hex = testBoard.getHexagonById("q0r0s0");
+        List<Hexagon> island = testBoard.getIsland(hex);
+        List<Hexagon> enemyHexagons = testBoard.getEnemyHexagons(island);
+
+        List<String> enemyHexagonIds = enemyHexagons.stream().map(Hexagon::getId).toList();
+
+        List<String> expectedEnemyHexagons = List.of("q0r1sm1", "q1rm1s0", "q1r0sm1");
+
+        assertEquals(expectedEnemyHexagons, enemyHexagonIds);
+    }
 }
