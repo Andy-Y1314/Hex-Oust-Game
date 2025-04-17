@@ -20,7 +20,7 @@ public class UnitTests {
     }
 
     @Test
-    public void testGetEnemyColor() {
+    public void testHexagonGetEnemyColor() {
         //Hexagon q,r,s values are trivial
         Hexagon redHex = new Hexagon(0,0,0);
         Hexagon blueHex = new Hexagon(0,0,0);
