@@ -1,11 +1,10 @@
 package comp20050.hexagonalboard;
 
 import javafx.scene.paint.Color;
-
 import static comp20050.hexagonalboard.Controller.colorGrey;
 
-
 public class Hexagon {
+
     private final int q, r, s;
     private Color color;
     private final String id;
@@ -30,28 +29,25 @@ public class Hexagon {
 
     public void setColor(Color color) {this.color = color;}
 
-    public void setColorGray() {this.color = colorGrey;}
+    public void setColorGrey() {color = colorGrey;}
 
-    public boolean isEmpty() {return this.color == colorGrey;}
+    public boolean isEmpty() {return color == colorGrey;}
 
-
-    public boolean sameColor(Hexagon hex2) {
-        return hex2.getColor() == this.getColor();
+    public boolean isSameColor(Hexagon hex2) {
+        return hex2.getColor() == color;
     }
+
+    public Color getEnemyColor() {
+        if (color == Color.RED) return Color.BLUE;
+        if (color == Color.BLUE) return Color.RED;
+        return colorGrey;
+    }
+
+    public boolean isEnemyColor(Hexagon hex2) {return getEnemyColor() == hex2.getColor();}
 
     public static String coordinatesToId(int q, int r, int s) {
         return "q" + ((q < 0) ? "m" + Math.abs(q) : Integer.toString(q)) +
                 "r" + ((r < 0) ? "m" + Math.abs(r) : Integer.toString(r)) +
                 "s" + ((s < 0) ? "m" + Math.abs(s) : Integer.toString(s));
-    }
-
-    public Color getEnemyColor() {
-        if (this.getColor() == Color.RED) {
-            return Color.BLUE;
-        } else if (this.getColor() == Color.BLUE) {
-            return Color.RED;
-        } else {
-            return colorGrey;
-        }
     }
 }

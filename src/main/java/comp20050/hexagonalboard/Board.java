@@ -5,17 +5,13 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import static comp20050.hexagonalboard.Controller.colorGrey;
-
 public class Board {
     ArrayList<ArrayList<Hexagon>> board;
-    private final int radius;
 
     public Board(int radius) {
-        this.radius = radius;
-        board = new ArrayList<ArrayList<Hexagon>>();
+        board = new ArrayList<>();
         for (int i = -radius; i <= radius; i++) {
-            board.add(new ArrayList<Hexagon>());
+            board.add(new ArrayList<>());
         }
         for (int q = -radius; q <= radius; q++) {
             for (int r = -radius; r <= radius; r++) {
@@ -29,8 +25,8 @@ public class Board {
     }
 
     public Hexagon getHexagonById(String id) {
-        for (ArrayList<Hexagon> list : board) {
-            for (Hexagon hexagon : list) {
+        for (ArrayList<Hexagon> column : board) {
+            for (Hexagon hexagon : column) {
                 if (hexagon.getId().equals(id)) {
                     return hexagon;
                 }
@@ -40,9 +36,9 @@ public class Board {
     }
 
     public ArrayList<Hexagon> getNeighbours(Hexagon hexagon) {
-        ArrayList<Hexagon> neighbours = new ArrayList<Hexagon>();
-        for (ArrayList<Hexagon> list : board) {
-            for (Hexagon otherHexagon : list) {
+        ArrayList<Hexagon> neighbours = new ArrayList<>();
+        for (ArrayList<Hexagon> column : board) {
+            for (Hexagon otherHexagon : column) {
                 int qDiff = Math.abs(hexagon.getQ() - otherHexagon.getQ());
                 int rDiff = Math.abs(hexagon.getR() - otherHexagon.getR());
                 int sDiff = Math.abs(hexagon.getS() - otherHexagon.getS());
@@ -59,7 +55,7 @@ public class Board {
 
     public boolean sameColorNeighbourExists(Hexagon hexagon) {
         for (Hexagon otherHexagon : getNeighbours(hexagon)) {
-            if (otherHexagon.getColor() == hexagon.getColor()) {
+            if (hexagon.isSameColor(otherHexagon)) {
                 return true;
             }
         }
@@ -73,9 +69,8 @@ public class Board {
         queue.add(hexagon);
         islands.add(hexagon);
         while (!queue.isEmpty()) {
-            Hexagon currentHex = queue.removeFirst();
-            for (Hexagon otherHexagon : getNeighbours(currentHex)) {
-                if (otherHexagon.sameColor(hexagon) && (!islands.contains(otherHexagon))) {
+            for (Hexagon otherHexagon : getNeighbours(queue.removeFirst())) {
+                if (otherHexagon.isSameColor(hexagon) && !islands.contains(otherHexagon)) {
                     islands.add(otherHexagon);
                     queue.add(otherHexagon);
                 }
@@ -88,16 +83,12 @@ public class Board {
         List<Hexagon> output = new ArrayList<>();
         for (Hexagon currentHex : island) {
             for (Hexagon neighbour : getNeighbours(currentHex)) {
-                if (currentHex.getEnemyColor() == neighbour.getColor() && !(output.contains(neighbour))) {
+                if (currentHex.isEnemyColor(neighbour) && !(output.contains(neighbour))) {
                     output.add(neighbour);
                 }
             }
         }
         return output;
-    }
-
-    public boolean isValidMove(Hexagon hex, Color currPlayerCol) {
-        return validateMove(hex, currPlayerCol) != null;
     }
 
     public List<Hexagon> validateMove(Hexagon hexagon, Color currPlayerCol) {
@@ -106,34 +97,34 @@ public class Board {
         hexagon.setColor(currPlayerCol);
 
         if (!sameColorNeighbourExists(hexagon)) {
-            hexagon.setColorGray();
-            return new ArrayList<Hexagon>();
+            hexagon.setColorGrey();
+            return new ArrayList<>();
         }
 
         List<Hexagon> island = getIsland(hexagon);
         List<Hexagon> enemyHexagons = getEnemyHexagons(island);
 
         if (enemyHexagons.isEmpty()) {
-            hexagon.setColorGray();
+            hexagon.setColorGrey();
             return null;
         }
 
         for (Hexagon enemyHex : enemyHexagons) {
             if (island.size() <= getIsland(enemyHex).size()) {
-                hexagon.setColorGray();
+                hexagon.setColorGrey();
                 return null;
             }
         }
 
         List<Hexagon> hexToRemove = new ArrayList<>();
         for (Hexagon enemyHex : enemyHexagons) {
-            for (Hexagon islands : getIsland(enemyHex)) {
-                if (!hexToRemove.contains(islands)) {
-                    hexToRemove.add(islands);
+            for (Hexagon hex : getIsland(enemyHex)) {
+                if (!hexToRemove.contains(hex)) {
+                    hexToRemove.add(hex);
                 }
             }
         }
-        hexagon.setColorGray();
+        hexagon.setColorGrey();
         return hexToRemove;
     }
 }

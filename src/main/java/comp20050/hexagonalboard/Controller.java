@@ -180,7 +180,7 @@ public class Controller {
     void resetGame() {
         for (ArrayList<Hexagon> row : board.board) {
             for (Hexagon hex : row) {
-                hex.setColorGray();
+                hex.setColorGrey();
                 polygonSetColor(hex.getId(), hex.getColor());
             }
         }
