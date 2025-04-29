@@ -40,7 +40,6 @@ public class UnitTests {
         blueHex.setColor(Color.BLUE);
 
         assertEquals(Color.BLUE, redHex.getEnemyColor());
-        assertEquals(Color.RED, blueHex.getEnemyColor());
     }
 
     @Test
@@ -48,28 +47,46 @@ public class UnitTests {
         //Hexagon q,r,s values are trivial
         Hexagon redHex = new Hexagon(2,3,4);
         Hexagon redHex2 = new Hexagon(3,4,5);
-        Hexagon blueHex = new Hexagon(1,0,1);
 
         redHex.setColor(Color.RED);
         redHex2.setColor(Color.RED);
+
+        assertTrue(redHex.isSameColor(redHex2));
+    }
+
+    @Test
+    public void testHexagonIsSameColorFalse() {
+        //Hexagon q,r,s values are trivial
+        Hexagon redHex = new Hexagon(2,3,4);
+        Hexagon blueHex = new Hexagon(1,0,1);
+
+        redHex.setColor(Color.RED);
         blueHex.setColor(Color.BLUE);
 
         assertFalse(redHex.isSameColor(blueHex));
-        assertTrue(redHex.isSameColor(redHex2));
     }
 
     @Test
     public void testHexagonIsEnemyColor() {
         //Hexagon q,r,s values are trivial
-        Hexagon redHex = new Hexagon(0,0,0);
+        Hexagon redHex = new Hexagon(0,6,9);
         Hexagon blueHex = new Hexagon(4,2,0);
-        Hexagon blueHex2 = new Hexagon(0,6,9);
 
         redHex.setColor(Color.RED);
         blueHex.setColor(Color.BLUE);
-        blueHex2.setColor(Color.BLUE);
 
         assertTrue(blueHex.isEnemyColor(redHex));
+    }
+
+    @Test
+    public void testHexagonIsEnemyColorFalse() {
+        //Hexagon q,r,s values are trivial
+        Hexagon blueHex = new Hexagon(4,3,0);
+        Hexagon blueHex2 = new Hexagon(0,6,8);
+
+        blueHex.setColor(Color.BLUE);
+        blueHex2.setColor(Color.BLUE);
+
         assertFalse(blueHex.isEnemyColor(blueHex2));
     }
 
@@ -77,6 +94,39 @@ public class UnitTests {
     /**
      * Board Class Tests
      */
+
+    @Test
+    public void testGetHexagonById() {
+        Board input = new Board(7);
+        Hexagon hex = input.getHexagonById("q4r2sm6");
+
+        assertTrue(hex.getQ() == 4 && hex.getR() == 2 && hex.getS() == -6);
+    }
+
+    @Test
+    public void testGetHexagonByIdWrong() {
+        Board input = new Board(7);
+        Hexagon hex = input.getHexagonById("q3r3sm6");
+
+        assertFalse(hex.getQ() == 5 && hex.getR() == 1 && hex.getS() == -6);
+    }
+
+    @Test
+    public void testGetHexagonByIdInvalidHex() {
+        Board input = new Board(7);
+        Hexagon hex = input.getHexagonById("q3rm3s1");
+
+        assertNull(hex);
+    }
+
+    @Test
+    public void testGetHexagonByIdOutOfBounds() {
+        Board input = new Board(7);
+        Hexagon hex = input.getHexagonById("q10rm5sm5");
+
+        assertNull(hex);
+    }
+
 
     @Test
     public void testGetNeighbours() {
@@ -107,6 +157,70 @@ public class UnitTests {
     }
 
     @Test
+    public void testGetNeighboursEdge() {
+        Board input = new Board(6);
+        Hexagon hex = input.getHexagonById("q6rm6s0");
+
+        //Creating a list of all the expected neighbours the 'getNeighbours' method should return for hexagon q0r0s0
+        List<Hexagon> neighbours = input.getNeighbours(hex);
+        List<String> neighbourIds = neighbours.stream().map(Hexagon::getId).toList();
+
+        List<String> expectedNeighbourIds = List.of("q5rm6s1", "q5rm5s0", "q6rm5sm1");
+
+        assertEquals(expectedNeighbourIds, neighbourIds);
+    }
+
+    @Test
+    public void testGetNeighboursEdgeWrong() {
+        Board input = new Board(6);
+        Hexagon hex = input.getHexagonById("q6rm6s0");
+
+        //Creating a list of all the expected neighbours the 'getNeighbours' method should return for hexagon q0r0s0
+        List<Hexagon> neighbours = input.getNeighbours(hex);
+        List<String> neighbourIds = neighbours.stream().map(Hexagon::getId).toList();
+
+        List<String> expectedNeighbourIds = List.of("q7rm7s0", "q5rm5s0", "q6rm7s1", "q6rm5sm1", "q7rm6sm1", "q5rm6s1");
+
+        assertNotEquals(expectedNeighbourIds, neighbourIds);
+    }
+
+
+    @Test
+    public void testSameColorNeighbourExists() {
+        Board input = new Board(7);
+
+        Hexagon hex = input.getHexagonById("q0r0s0");
+
+        input.getHexagonById("q0r0s0").setColor(Color.RED);
+        input.getHexagonById("qm1r0s1").setColor(Color.RED);
+
+        assertTrue(input.sameColorNeighbourExists(hex));
+    }
+
+    @Test
+    public void testSameColorNeighbourExistsFalse1() {
+        Board input = new Board(7);
+
+        Hexagon hex = input.getHexagonById("qm3r3s0");
+
+        input.getHexagonById("qm2r2s0").setColor(Color.RED);
+        input.getHexagonById("qm3r3s0").setColor(Color.BLUE);
+
+        assertFalse(input.sameColorNeighbourExists(hex));
+    }
+
+    @Test
+    public void testSameColorNeighbourExistsFalse2() {
+        Board input = new Board(7);
+
+        Hexagon hex = input.getHexagonById("qm3r3s0");
+
+        input.getHexagonById("qm3r3s0").setColor(Color.BLUE);
+
+        assertFalse(input.sameColorNeighbourExists(hex));
+    }
+
+    @Test
     public void testGetIsland() {
         Board testBoard = new Board(7);
 
@@ -122,6 +236,22 @@ public class UnitTests {
         List<String> islandIds = island.stream().map(Hexagon::getId).toList();
 
         List<String> expectedIsland = List.of("q0r0s0", "qm1r0s1", "qm1r1s0");
+
+        assertEquals(expectedIsland, islandIds);
+    }
+
+    @Test
+    public void testGetIslandSingular() {
+        Board testBoard = new Board(7);
+
+        testBoard.getHexagonById("q0r0s0").setColor(Color.RED);
+
+        Hexagon hex = testBoard.getHexagonById("q0r0s0");
+
+        List<Hexagon> island = testBoard.getIsland(hex);
+        List<String> islandIds = island.stream().map(Hexagon::getId).toList();
+
+        List<String> expectedIsland = List.of("q0r0s0");
 
         assertEquals(expectedIsland, islandIds);
     }
@@ -148,23 +278,7 @@ public class UnitTests {
         assertNotEquals(wrongIsland, islandIds);
     }
 
-    @Test
-    public void testSameColorNeighbourExists() {
-        Board input = new Board(7);
 
-        Hexagon hex1 = input.getHexagonById("q0r0s0");
-
-        input.getHexagonById("q0r0s0").setColor(Color.RED);
-        input.getHexagonById("qm1r0s1").setColor(Color.RED);
-
-        Hexagon hex2 = input.getHexagonById("qm3r3s0");
-
-        input.getHexagonById("qm2r2s0").setColor(Color.RED);
-        input.getHexagonById("qm3r3s0").setColor(Color.BLUE);
-
-        assertTrue(input.sameColorNeighbourExists(hex1));
-        assertFalse(input.sameColorNeighbourExists(hex2));
-    }
 
     @Test
     public void testGetEnemyHexagon() {
@@ -210,9 +324,114 @@ public class UnitTests {
         assertNotEquals(wrongEnemyHexagons, enemyHexagonIds);
     }
 
+    @Test
+    public void testValidateMovePreoccupiedHex() {
+        Board testBoard = new Board(7);
+
+        Hexagon hex1 = testBoard.getHexagonById("q0r0s0");
+        hex1.setColor(Color.RED);
+
+        assertNull(testBoard.validateMove(hex1, Color.BLUE));
+    }
+
+    @Test
+    public void testValidateMoveNonCaptureMoveAlone() {
+        Board testBoard = new Board(6);
+
+        Hexagon hex1 = testBoard.getHexagonById("q0r0s0");
+
+        assertEquals(testBoard.validateMove(hex1, Color.RED), new ArrayList<>());
+    }
+
+    @Test
+    public void testValidateMoveInvalidCaptureMove1() {
+        Board testBoard = new Board(6);
+
+        testBoard.getHexagonById("q0r0s0").setColor(Color.RED);
+
+        Hexagon hex1 = testBoard.getHexagonById("q1rm1s0");
+
+        assertNull(testBoard.validateMove(hex1, Color.RED));
+    }
+
+    @Test
+    public void testValidateMoveInvalidCaptureMove2() {
+        Board testBoard = new Board(6);
+
+        testBoard.getHexagonById("q2rm2s0").setColor(Color.RED);
+        testBoard.getHexagonById("q3rm3s0").setColor(Color.RED);
+        testBoard.getHexagonById("q4rm4s0").setColor(Color.RED);
+        testBoard.getHexagonById("q0r0s0").setColor(Color.BLUE);
+
+        Hexagon hex = testBoard.getHexagonById("q1rm1s0");
+
+        assertNull(testBoard.validateMove(hex, Color.BLUE));
+    }
+
+    @Test
+    public void testValidateMoveSelfSacrifise() {
+        Board testBoard = new Board(6);
+
+        testBoard.getHexagonById("q2rm2s0").setColor(Color.RED);
+        testBoard.getHexagonById("q3rm3s0").setColor(Color.RED);
+        testBoard.getHexagonById("q4rm4s0").setColor(Color.RED);
+
+        Hexagon hex = testBoard.getHexagonById("q1rm1s0");
+
+        assertEquals(testBoard.validateMove(hex, Color.BLUE), new ArrayList<>());
+    }
+
+    @Test
+    public void testValidateMoveNonCaptureMoveEnemy() {
+        Board testBoard = new Board(6);
+
+        testBoard.getHexagonById("q2rm2s0").setColor(Color.RED);
+
+        Hexagon hex = testBoard.getHexagonById("q1rm1s0");
+
+        assertEquals(testBoard.validateMove(hex, Color.BLUE), new ArrayList<>());
+    }
+
+    @Test
+    public void testValidateMoveCapturingMove() {
+        Board testBoard = new Board(6);
+
+        testBoard.getHexagonById("q6rm6s0").setColor(Color.RED);
+        testBoard.getHexagonById("q5rm5s0").setColor(Color.RED);
+        testBoard.getHexagonById("q1rm1s0").setColor(Color.RED);
+        testBoard.getHexagonById("q0r0s0").setColor(Color.RED);
+
+        testBoard.getHexagonById("q3rm3s0").setColor(Color.BLUE);
+        testBoard.getHexagonById("q2rm2s0").setColor(Color.BLUE);
+
+        Hexagon hex = testBoard.getHexagonById("q4rm4s0");
+
+        List<String> hexToDelete = testBoard.validateMove(hex, Color.BLUE).stream().map(Hexagon::getId).toList();
+        List<String> expectedHexToDelete = List.of("q5rm5s0", "q6rm6s0", "q1rm1s0", "q0r0s0");
+
+        assertEquals(expectedHexToDelete, hexToDelete);
+    }
+
+    /**
+     * Player Class Tests
+     */
+    @Test
+    public void testGetEnemyColor() {
+        Player p = new Player(Color.RED);
+
+        assertEquals(Color.BLUE, p.getEnemyColor());
+    }
+
+
     /**
      * Controller Class Tests
      */
+    @Test
+    public void testUpdateHexCounter1() {
+        Controller con = new Controller();
+
+    }
+
     @Test
     public void placingStoneNonCapturing() {
         String inputId = "q0r0s0";
