@@ -58,38 +58,41 @@ public class Controller {
     private boolean isFirstMove;
     private boolean gameOn;
 
+
     @FXML
-    void getHexID(MouseEvent event) {
+    void placeHex(MouseEvent event) {
         if (!gameOn) return;
 
-        Polygon polygon = (Polygon) event.getSource();
-        Hexagon hex = board.getHexagonById(polygon.getId());
+        Polygon pol = ((Polygon) event.getSource());
+        Hexagon hex = board.getHexagonById(pol.getId());
 
+        makeValidMove(hex);
+
+        if (!isFirstMove && (numRedHex == 0 || numBlueHex == 0)) {
+            gameOn = false;
+            gameWinDisplay();
+        }
+    }
+
+    void makeValidMove(Hexagon hex) {
         List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.color());
 
         if (hexToDelete == null) {
             displayInvalidMove();
-        } else {
-            hex.setColor(currentPlayer.color());
-            updateHexCounter(currentPlayer.color(), true);
-            polygonSetColor(hex.getId(), hex.getColor());
-
-            for (Hexagon toDelete : hexToDelete) {
-                toDelete.setColor(colorGrey);
-                updateHexCounter(currentPlayer.getEnemyColor(), false);
-                polygonSetColor(toDelete.getId(), colorGrey);
-            }
-
-            if (hexToDelete.isEmpty()) {
-                switchTurn();
-            }
+            return;
         }
 
-        if (!isFirstMove && (numRedHex == 0 || numBlueHex == 0)) gameOn = false;
+        hex.setColor(currentPlayer.color());
+        updateHexCounter(currentPlayer.color(), true);
+        polygonSetColor(hex.getId(), hex.getColor());
 
-        if (!gameOn) {
-            gameWinDisplay();
+        for (Hexagon toDelete : hexToDelete) {
+            toDelete.setColor(colorGrey);
+            updateHexCounter(currentPlayer.getEnemyColor(), false);
+            polygonSetColor(toDelete.getId(), colorGrey);
         }
+
+        if (hexToDelete.isEmpty()) switchTurn();
     }
 
     public void gameWinDisplay() {
