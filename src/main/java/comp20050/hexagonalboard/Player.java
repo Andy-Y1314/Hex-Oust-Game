@@ -19,21 +19,11 @@ public class Player {
         return (color == Color.RED) ? Color.BLUE : Color.RED;
     }
 
-    public boolean isTurn() {
-        return isTurn;
-    }
-
-    public void setTurn(boolean isTurn) {
-        this.isTurn = isTurn;
-    }
+    public void setTurn(boolean isTurn) {this.isTurn = isTurn;}
 
     @Override
     public String toString() {
-        if (this.getColor() == Color.BLUE) {
-            return "Blue Player";
-        } else {
-            return "Red Player";
-        }
+        return (color == Color.BLUE) ? "Blue Player" : "Red Player";
     }
 
 }

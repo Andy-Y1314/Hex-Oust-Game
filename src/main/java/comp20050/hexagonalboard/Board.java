@@ -6,18 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    ArrayList<ArrayList<Hexagon>> board;
+    ArrayList<Hexagon> board = new ArrayList<>();;
 
     public Board(int radius) {
-        board = new ArrayList<>();
-        for (int i = -radius; i <= radius; i++) {
-            board.add(new ArrayList<>());
-        }
         for (int q = -radius; q <= radius; q++) {
             for (int r = -radius; r <= radius; r++) {
                 for (int s = -radius; s <= radius; s++) {
                     if (q + r + s == 0) {
-                        board.get(q + radius).add(new Hexagon(q, r, s));
+                        board.add(new Hexagon(q, r, s));
                     }
                 }
             }
@@ -25,11 +21,9 @@ public class Board {
     }
 
     public Hexagon getHexagonById(String id) {
-        for (ArrayList<Hexagon> column : board) {
-            for (Hexagon hexagon : column) {
-                if (hexagon.getId().equals(id)) {
-                    return hexagon;
-                }
+        for (Hexagon hexagon : board) {
+            if (hexagon.getId().equals(id)) {
+                return hexagon;
             }
         }
         return null;
@@ -37,17 +31,15 @@ public class Board {
 
     public ArrayList<Hexagon> getNeighbours(Hexagon hexagon) {
         ArrayList<Hexagon> neighbours = new ArrayList<>();
-        for (ArrayList<Hexagon> column : board) {
-            for (Hexagon otherHexagon : column) {
-                int qDiff = Math.abs(hexagon.getQ() - otherHexagon.getQ());
-                int rDiff = Math.abs(hexagon.getR() - otherHexagon.getR());
-                int sDiff = Math.abs(hexagon.getS() - otherHexagon.getS());
+        for (Hexagon otherHexagon : board) {
+            int qDiff = Math.abs(hexagon.getQ() - otherHexagon.getQ());
+            int rDiff = Math.abs(hexagon.getR() - otherHexagon.getR());
+            int sDiff = Math.abs(hexagon.getS() - otherHexagon.getS());
 
-                if ((qDiff == 0 && rDiff == 1 && sDiff == 1) ||
-                        (qDiff == 1 && rDiff == 0 && sDiff == 1) ||
-                        (qDiff == 1 && rDiff == 1 && sDiff == 0)) {
-                    neighbours.add(otherHexagon);
-                }
+            if ((qDiff == 0 && rDiff == 1 && sDiff == 1) ||
+                    (qDiff == 1 && rDiff == 0 && sDiff == 1) ||
+                    (qDiff == 1 && rDiff == 1 && sDiff == 0)) {
+                neighbours.add(otherHexagon);
             }
         }
         return neighbours;
@@ -95,25 +87,21 @@ public class Board {
         if (!hexagon.isEmpty()) return null;
 
         hexagon.setColor(currPlayerCol);
+        List<Hexagon> hexToRemove = new ArrayList<>();
 
-        if (!sameColorNeighbourExists(hexagon)) {
-            hexagon.setColorGrey();
-            return new ArrayList<>();
+        if (sameColorNeighbourExists(hexagon)) {
+            List<Hexagon> island = getIsland(hexagon);
+            hexToRemove = validateCaptureMove(island, getEnemyHexagons(island));
         }
+        hexagon.setColorGrey();
+        return hexToRemove;
+    }
 
-        List<Hexagon> island = getIsland(hexagon);
-        List<Hexagon> enemyHexagons = getEnemyHexagons(island);
-
-        if (enemyHexagons.isEmpty()) {
-            hexagon.setColorGrey();
-            return null;
-        }
+    private List<Hexagon> validateCaptureMove(List<Hexagon> island, List<Hexagon> enemyHexagons) {
+        if (enemyHexagons.isEmpty()) return null;
 
         for (Hexagon enemyHex : enemyHexagons) {
-            if (island.size() <= getIsland(enemyHex).size()) {
-                hexagon.setColorGrey();
-                return null;
-            }
+            if (island.size() <= getIsland(enemyHex).size()) return null;
         }
 
         List<Hexagon> hexToRemove = new ArrayList<>();
@@ -124,7 +112,6 @@ public class Board {
                 }
             }
         }
-        hexagon.setColorGrey();
         return hexToRemove;
     }
 }

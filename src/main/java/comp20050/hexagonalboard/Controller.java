@@ -178,11 +178,9 @@ public class Controller {
 
     @FXML
     void resetGame() {
-        for (ArrayList<Hexagon> row : board.board) {
-            for (Hexagon hex : row) {
-                hex.setColorGrey();
-                polygonSetColor(hex.getId(), hex.getColor());
-            }
+        for (Hexagon hex : board.board) {
+            hex.setColorGrey();
+            polygonSetColor(hex.getId(), hex.getColor());
         }
         gameOn = true;
         numRedHex = 0;
