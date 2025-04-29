@@ -5,7 +5,6 @@
 package comp20050.hexagonalboard;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
@@ -66,13 +65,13 @@ public class Controller {
         Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.getColor());
+        List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.color());
 
         if (hexToDelete == null) {
             displayInvalidMove();
         } else {
-            hex.setColor(currentPlayer.getColor());
-            updateHexCounter(currentPlayer.getColor(), true);
+            hex.setColor(currentPlayer.color());
+            updateHexCounter(currentPlayer.color(), true);
             polygonSetColor(hex.getId(), hex.getColor());
 
             for (Hexagon toDelete : hexToDelete) {
@@ -152,16 +151,12 @@ public class Controller {
 
     void switchTurn() {
         if (currentPlayer == redPlayer) {
-            currentPlayer.setTurn(false);
             currentPlayer = bluePlayer;
-            currentPlayer.setTurn(true);
 
             circle.setFill(Color.BLUE);
             label.setText("Blue Player's move now!");
         } else {
-            currentPlayer.setTurn(false);
             currentPlayer = redPlayer;
-            currentPlayer.setTurn(true);
 
             if (isFirstMove && (numBlueHex + numRedHex == 2))
                 isFirstMove = false;
@@ -197,7 +192,7 @@ public class Controller {
         Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (gameOn && board.validateMove(hex, currentPlayer.getColor()) != null) {
+        if (gameOn && board.validateMove(hex, currentPlayer.color()) != null) {
             previewMove(hex.getId());
         }
     }
@@ -212,7 +207,7 @@ public class Controller {
     }
 
     public void previewMove(String polygonId) {
-        if (currentPlayer.getColor() == Color.BLUE) {
+        if (currentPlayer.color() == Color.BLUE) {
             polygonSetColor(polygonId, Color.LIGHTBLUE);
         } else {
             polygonSetColor(polygonId, Color.PINK);
@@ -231,7 +226,6 @@ public class Controller {
         gameOn = true;
         isFirstMove = true;
 
-        redPlayer.setTurn(true);
         currentPlayer = redPlayer;
 
         invalidMoveLabel.setVisible(false);
