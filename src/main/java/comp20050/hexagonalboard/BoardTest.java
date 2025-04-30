@@ -6,95 +6,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static comp20050.hexagonalboard.Controller.colorGrey;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-public class UnitTests {
-
-    /**
-     * Hexagon Class tests
-     */
-    @Test
-    public void testCoordinatesToId1() {
-        int q = 4, r = -1, s = -3;
-        String expected = "q4rm1sm3";
-
-        assertEquals(expected, Hexagon.coordinatesToId(q, r, s));
-    }
-
-    @Test
-    public void testCoordinatesToId2() {
-        int q = -2, r = 2, s = 0;
-        String expected = "qm2r2s0";
-
-        assertEquals(expected, Hexagon.coordinatesToId(q, r, s));
-    }
-
-    @Test
-    public void testHexagonGetEnemyColor() {
-        //Hexagon q,r,s values are trivial
-        Hexagon redHex = new Hexagon(0,0,0);
-        Hexagon blueHex = new Hexagon(0,0,0);
-
-        redHex.setColor(Color.RED);
-        blueHex.setColor(Color.BLUE);
-
-        assertEquals(Color.BLUE, redHex.getEnemyColor());
-    }
-
-    @Test
-    public void testHexagonIsSameColor() {
-        //Hexagon q,r,s values are trivial
-        Hexagon redHex = new Hexagon(2,3,4);
-        Hexagon redHex2 = new Hexagon(3,4,5);
-
-        redHex.setColor(Color.RED);
-        redHex2.setColor(Color.RED);
-
-        assertTrue(redHex.isSameColor(redHex2));
-    }
-
-    @Test
-    public void testHexagonIsSameColorFalse() {
-        //Hexagon q,r,s values are trivial
-        Hexagon redHex = new Hexagon(2,3,4);
-        Hexagon blueHex = new Hexagon(1,0,1);
-
-        redHex.setColor(Color.RED);
-        blueHex.setColor(Color.BLUE);
-
-        assertFalse(redHex.isSameColor(blueHex));
-    }
-
-    @Test
-    public void testHexagonIsEnemyColor() {
-        //Hexagon q,r,s values are trivial
-        Hexagon redHex = new Hexagon(0,6,9);
-        Hexagon blueHex = new Hexagon(4,2,0);
-
-        redHex.setColor(Color.RED);
-        blueHex.setColor(Color.BLUE);
-
-        assertTrue(blueHex.isEnemyColor(redHex));
-    }
-
-    @Test
-    public void testHexagonIsEnemyColorFalse() {
-        //Hexagon q,r,s values are trivial
-        Hexagon blueHex = new Hexagon(4,3,0);
-        Hexagon blueHex2 = new Hexagon(0,6,8);
-
-        blueHex.setColor(Color.BLUE);
-        blueHex2.setColor(Color.BLUE);
-
-        assertFalse(blueHex.isEnemyColor(blueHex2));
-    }
-
-
-    /**
-     * Board Class Tests
-     */
-
+public class BoardTest {
     @Test
     public void testGetHexagonById() {
         Board input = new Board(7);
@@ -410,71 +328,5 @@ public class UnitTests {
         List<String> expectedHexToDelete = List.of("q5rm5s0", "q6rm6s0", "q1rm1s0", "q0r0s0");
 
         assertEquals(expectedHexToDelete, hexToDelete);
-    }
-
-    /**
-     * Player Class Tests
-     */
-    @Test
-    public void testGetEnemyColor() {
-        Player p = new Player(Color.RED);
-
-        assertEquals(Color.BLUE, p.getEnemyColor());
-    }
-
-
-    /**
-     * Controller Class Tests
-     */
-    @Test
-    public void testUpdateHexCounter1() {
-        Controller con = new Controller();
-
-    }
-
-    @Test
-    public void placingStoneNonCapturing() {
-        String inputId = "q0r0s0";
-        Color currPlayerColor = Color.RED;
-
-        Board input = new Board(7);
-
-        Board expected = new Board(7);
-        expected.getHexagonById("q0r0s0").setColor(Color.RED);
-
-
-        Hexagon hex = input.getHexagonById(inputId);
-
-        List<Hexagon> hexToDelete = input.validateMove(hex, currPlayerColor);
-
-        /*
-        - Copied directly from Controller class logic (getHexId)
-        - Frontend / UI functionality has been commented out
-         */
-
-        if (hexToDelete == null) {
-            //displayInvalidMove();
-        } else {
-            hex.setColor(Color.RED);
-            //updateHexCounter(currentPlayer.getColor(), true);
-            //polygonSetColor(hex.getId(), hex.getColor());
-
-            for (Hexagon toDelete : hexToDelete) {
-                toDelete.setColor(colorGrey);
-                //updateHexCounter(currentPlayer.getEnemyColor(), false);
-                //polygonSetColor(toDelete.getId(), colorGrey);
-            }
-        }
-
-        /*
-        for (int i = 0; i < this.board.size(); i++) {
-            for (int j = 0; j < this.board.get(i).size(); j++) {
-                if (!this.board.get(i).get(j).sameColor(board.board.get(i).get(j))) {
-                    return false;
-                }
-            }
-        }
-         */
-
     }
 }
