@@ -1,12 +1,6 @@
-/**
- * Sample Skeleton for 'board-view.fxml' Controller Class
- */
-
 package comp20050.hexagonalboard;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -23,12 +17,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Controller {
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
 
     @FXML
     private AnchorPane parent;
@@ -47,17 +35,16 @@ public class Controller {
 
     public static Color colorGrey;
 
-    // Create player instances
     private Player redPlayer;
     private Player bluePlayer;
     private Player currentPlayer;
     private Board board;
 
-    private int numRedHex = 0;
-    private int numBlueHex = 0;
     private boolean isFirstMove;
     private boolean gameOn;
 
+    public int numRedHex = 0;
+    public int numBlueHex = 0;
 
     @FXML
     void placeHex(MouseEvent event) {
@@ -75,7 +62,7 @@ public class Controller {
     }
 
     void makeValidMove(Hexagon hex) {
-        List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.getColor());
+        List<Hexagon> hexToDelete = board.HexagonsToRemove(hex, currentPlayer.getColor());
 
         if (hexToDelete == null) {
             displayInvalidMove();
@@ -195,7 +182,7 @@ public class Controller {
         Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (gameOn && board.validateMove(hex, currentPlayer.getColor()) != null) {
+        if (gameOn && board.HexagonsToRemove(hex, currentPlayer.getColor()) != null) {
             previewMove(hex.getId());
         }
     }
@@ -217,7 +204,6 @@ public class Controller {
             polygonSetColor(polygonId, Color.PINK);
         }
     }
-
 
     @FXML
     void initialize() {

@@ -3,53 +3,52 @@ package comp20050.hexagonalboard;
 import javafx.scene.paint.Color;
 import org.junit.Test;
 
-import java.util.List;
-
-import static comp20050.hexagonalboard.Controller.colorGrey;
+import static org.junit.Assert.assertEquals;
 
 public class ControllerTest {
+
     @Test
-    public void placingStoneNonCapturing() {
-        String inputId = "q0r0s0";
-        Color currPlayerColor = Color.RED;
+    public void testUpdateHexCounterIncrementRed() {
+        Controller controller = new Controller();
 
-        Board input = new Board(7);
+        controller.updateHexCounter(Color.RED, true);
+        controller.updateHexCounter(Color.RED, true);
 
-        Board expected = new Board(7);
-        expected.getHexagonById("q0r0s0").setColor(Color.RED);
-
-
-        Hexagon hex = input.getHexagonById(inputId);
-
-        List<Hexagon> hexToDelete = input.validateMove(hex, currPlayerColor);
-
-        /*
-        - Copied directly from Controller class logic (getHexId)
-        - Frontend / UI functionality has been commented out
-         */
-
-        if (hexToDelete == null) {
-            //displayInvalidMove();
-        } else {
-            hex.setColor(Color.RED);
-            //updateHexCounter(currentPlayer.getColor(), true);
-            //polygonSetColor(hex.getId(), hex.getColor());
-
-            for (Hexagon toDelete : hexToDelete) {
-                toDelete.setColor(colorGrey);
-                //updateHexCounter(currentPlayer.getEnemyColor(), false);
-                //polygonSetColor(toDelete.getId(), colorGrey);
-            }
-        }
-
-        /*
-        for (int i = 0; i < this.board.size(); i++) {
-            for (int j = 0; j < this.board.get(i).size(); j++) {
-                if (!this.board.get(i).get(j).sameColor(board.board.get(i).get(j))) {
-                    return false;
-                }
-            }
-        }
-         */
+        assertEquals(2, controller.numRedHex);
     }
+
+    @Test
+    public void testUpdateHexCounterDecrementRed() {
+        Controller controller = new Controller();
+
+        controller.numRedHex = 3;
+        controller.updateHexCounter(Color.RED, false);
+
+        assertEquals(2, controller.numRedHex);
+    }
+
+    @Test
+    public void testUpdateHexCounterIncrementBlue() {
+        Controller controller = new Controller();
+
+        for (int i = 0; i < 10; i++) {
+            controller.updateHexCounter(Color.BLUE, true);
+        }
+
+        assertEquals(10, controller.numBlueHex);
+    }
+
+    @Test
+    public void testUpdateHexCounterDecrementBlue() {
+        Controller controller = new Controller();
+
+        controller.numBlueHex = 12;
+
+        for (int i = 0; i < 5; i++) {
+            controller.updateHexCounter(Color.BLUE, false);
+        }
+
+        assertEquals(7, controller.numBlueHex);
+    }
+
 }

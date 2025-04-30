@@ -6,11 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BoardTest {
     @Test
@@ -243,37 +239,37 @@ public class BoardTest {
     }
 
     @Test
-    public void testValidateMovePreoccupiedHex() {
+    public void testHexagonsToRemovePreoccupiedHex() {
         Board testBoard = new Board(7);
 
         Hexagon hex1 = testBoard.getHexagonById("q0r0s0");
         hex1.setColor(Color.RED);
 
-        assertNull(testBoard.validateMove(hex1, Color.BLUE));
+        assertNull(testBoard.HexagonsToRemove(hex1, Color.BLUE));
     }
 
     @Test
-    public void testValidateMoveNonCaptureMoveAlone() {
+    public void testHexagonsToRemoveAlone() {
         Board testBoard = new Board(6);
 
         Hexagon hex1 = testBoard.getHexagonById("q0r0s0");
 
-        assertEquals(new ArrayList<>(), testBoard.validateMove(hex1, Color.RED));
+        assertEquals(new ArrayList<>(), testBoard.HexagonsToRemove(hex1, Color.RED));
     }
 
     @Test
-    public void testValidateMoveInvalidCaptureMove1() {
+    public void testHexagonsToRemove1() {
         Board testBoard = new Board(6);
 
         testBoard.getHexagonById("q0r0s0").setColor(Color.RED);
 
         Hexagon hex1 = testBoard.getHexagonById("q1rm1s0");
 
-        assertNull(testBoard.validateMove(hex1, Color.RED));
+        assertNull(testBoard.HexagonsToRemove(hex1, Color.RED));
     }
 
     @Test
-    public void testValidateMoveInvalidCaptureMove2() {
+    public void testHexagonsToRemove2() {
         Board testBoard = new Board(6);
 
         testBoard.getHexagonById("q2rm2s0").setColor(Color.RED);
@@ -283,11 +279,11 @@ public class BoardTest {
 
         Hexagon hex = testBoard.getHexagonById("q1rm1s0");
 
-        assertNull(testBoard.validateMove(hex, Color.BLUE));
+        assertNull(testBoard.HexagonsToRemove(hex, Color.BLUE));
     }
 
     @Test
-    public void testValidateMoveSelfSacrifise() {
+    public void testHexagonsToRemoveSelfSacrifise() {
         Board testBoard = new Board(6);
 
         testBoard.getHexagonById("q2rm2s0").setColor(Color.RED);
@@ -296,22 +292,22 @@ public class BoardTest {
 
         Hexagon hex = testBoard.getHexagonById("q1rm1s0");
 
-        assertEquals(new ArrayList<>(),testBoard.validateMove(hex, Color.BLUE));
+        assertEquals(new ArrayList<>(),testBoard.HexagonsToRemove(hex, Color.BLUE));
     }
 
     @Test
-    public void testValidateMoveNonCaptureMoveEnemy() {
+    public void testHexagonsToRemoveEnemy() {
         Board testBoard = new Board(6);
 
         testBoard.getHexagonById("q2rm2s0").setColor(Color.RED);
 
         Hexagon hex = testBoard.getHexagonById("q1rm1s0");
 
-        assertEquals(new ArrayList<>() ,testBoard.validateMove(hex, Color.BLUE));
+        assertEquals(new ArrayList<>() ,testBoard.HexagonsToRemove(hex, Color.BLUE));
     }
 
     @Test
-    public void testValidateMoveCapturingMove() {
+    public void testHexagonsToRemove() {
         Board testBoard = new Board(6);
 
         testBoard.getHexagonById("q6rm6s0").setColor(Color.RED);
@@ -324,7 +320,7 @@ public class BoardTest {
 
         Hexagon hex = testBoard.getHexagonById("q4rm4s0");
 
-        List<String> hexToDelete = testBoard.validateMove(hex, Color.BLUE).stream().map(Hexagon::getId).toList();
+        List<String> hexToDelete = testBoard.HexagonsToRemove(hex, Color.BLUE).stream().map(Hexagon::getId).toList();
         List<String> expectedHexToDelete = List.of("q5rm5s0", "q6rm6s0", "q1rm1s0", "q0r0s0");
 
         assertEquals(expectedHexToDelete, hexToDelete);

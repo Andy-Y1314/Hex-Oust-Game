@@ -83,7 +83,7 @@ public class Board {
         return output;
     }
 
-    public List<Hexagon> validateMove(Hexagon hexagon, Color currPlayerCol) {
+    public List<Hexagon> HexagonsToRemove(Hexagon hexagon, Color currPlayerCol) {
         if (!hexagon.isEmpty()) return null;
 
         hexagon.setColor(currPlayerCol);
