@@ -27,7 +27,6 @@ public class HexagonTest {
 
     @Test
     public void testHexagonGetEnemyColor() {
-        //Hexagon q,r,s values are trivial
         Hexagon redHex = new Hexagon(0,0,0);
         Hexagon blueHex = new Hexagon(0,0,0);
 
@@ -39,7 +38,6 @@ public class HexagonTest {
 
     @Test
     public void testHexagonIsSameColor() {
-        //Hexagon q,r,s values are trivial
         Hexagon redHex = new Hexagon(2,3,4);
         Hexagon redHex2 = new Hexagon(3,4,5);
 
@@ -51,7 +49,6 @@ public class HexagonTest {
 
     @Test
     public void testHexagonIsSameColorFalse() {
-        //Hexagon q,r,s values are trivial
         Hexagon redHex = new Hexagon(2,3,4);
         Hexagon blueHex = new Hexagon(1,0,1);
 
@@ -63,7 +60,6 @@ public class HexagonTest {
 
     @Test
     public void testHexagonIsEnemyColor() {
-        //Hexagon q,r,s values are trivial
         Hexagon redHex = new Hexagon(0,6,9);
         Hexagon blueHex = new Hexagon(4,2,0);
 
@@ -75,7 +71,6 @@ public class HexagonTest {
 
     @Test
     public void testHexagonIsEnemyColorFalse() {
-        //Hexagon q,r,s values are trivial
         Hexagon blueHex = new Hexagon(4,3,0);
         Hexagon blueHex2 = new Hexagon(0,6,8);
 

@@ -75,15 +75,15 @@ public class Controller {
     }
 
     void makeValidMove(Hexagon hex) {
-        List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.color());
+        List<Hexagon> hexToDelete = board.validateMove(hex, currentPlayer.getColor());
 
         if (hexToDelete == null) {
             displayInvalidMove();
             return;
         }
 
-        hex.setColor(currentPlayer.color());
-        updateHexCounter(currentPlayer.color(), true);
+        hex.setColor(currentPlayer.getColor());
+        updateHexCounter(currentPlayer.getColor(), true);
         polygonSetColor(hex.getId(), hex.getColor());
 
         for (Hexagon toDelete : hexToDelete) {
@@ -195,7 +195,7 @@ public class Controller {
         Polygon polygon = (Polygon) event.getSource();
         Hexagon hex = board.getHexagonById(polygon.getId());
 
-        if (gameOn && board.validateMove(hex, currentPlayer.color()) != null) {
+        if (gameOn && board.validateMove(hex, currentPlayer.getColor()) != null) {
             previewMove(hex.getId());
         }
     }
@@ -209,8 +209,9 @@ public class Controller {
         }
     }
 
+    @FXML
     public void previewMove(String polygonId) {
-        if (currentPlayer.color() == Color.BLUE) {
+        if (currentPlayer.getColor() == Color.BLUE) {
             polygonSetColor(polygonId, Color.LIGHTBLUE);
         } else {
             polygonSetColor(polygonId, Color.PINK);
@@ -218,7 +219,7 @@ public class Controller {
     }
 
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
     void initialize() {
         colorGrey = (Color) q0r0s0.getFill();
 

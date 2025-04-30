@@ -258,7 +258,7 @@ public class BoardTest {
 
         Hexagon hex1 = testBoard.getHexagonById("q0r0s0");
 
-        assertEquals(testBoard.validateMove(hex1, Color.RED), new ArrayList<>());
+        assertEquals(new ArrayList<>(), testBoard.validateMove(hex1, Color.RED));
     }
 
     @Test
@@ -296,7 +296,7 @@ public class BoardTest {
 
         Hexagon hex = testBoard.getHexagonById("q1rm1s0");
 
-        assertEquals(testBoard.validateMove(hex, Color.BLUE), new ArrayList<>());
+        assertEquals(new ArrayList<>(),testBoard.validateMove(hex, Color.BLUE));
     }
 
     @Test
@@ -307,7 +307,7 @@ public class BoardTest {
 
         Hexagon hex = testBoard.getHexagonById("q1rm1s0");
 
-        assertEquals(testBoard.validateMove(hex, Color.BLUE), new ArrayList<>());
+        assertEquals(new ArrayList<>() ,testBoard.validateMove(hex, Color.BLUE));
     }
 
     @Test
