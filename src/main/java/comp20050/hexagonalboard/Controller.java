@@ -16,6 +16,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Controller class for managing the UI logic and game flow of a two-player
+ * hexagonal board game using JavaFX and SceneBuilder.
+ *
+ * This class handles front end, updates the game board, tracks player turns,
+ */
 public class Controller {
 
     @FXML
@@ -46,6 +52,14 @@ public class Controller {
     public int numRedHex = 0;
     public int numBlueHex = 0;
 
+    /**
+     * Handles what happens when a player places a move.
+     * If the move is valid, the board is updated and the turn may switch.
+     * Ends the game if it is not the firstMove and when a player has no more
+     * hexagons of their own colour
+     *
+     * @param event Mouse event triggered by clicking a hexagon.
+     */
     @FXML
     void placeHex(MouseEvent event) {
         if (!gameOn) return;
@@ -61,6 +75,12 @@ public class Controller {
         }
     }
 
+    /**
+     * Applies a valid move to the board and updates any affected hexagons.
+     * If no hexagons are captured (Non Capturing Move), the turn switches.
+     *
+     * @param hex The hexagon where the move is attempted.
+     */
     void makeValidMove(Hexagon hex) {
         List<Hexagon> hexToDelete = board.HexagonsToRemove(hex, currentPlayer.getColor());
 
@@ -82,6 +102,10 @@ public class Controller {
         if (hexToDelete.isEmpty()) switchTurn();
     }
 
+    /**
+     * Displays a pop-up window showing the game winner and provides options
+     * to restart or quit.
+     */
     public void gameWinDisplay() {
         Stage window = new Stage();
         VBox layout = new VBox(10);
@@ -107,6 +131,12 @@ public class Controller {
         window.show();
     }
 
+    /**
+     * Updates the number of hexagons that a player occupies.
+     *
+     * @param playerCol The player's colour.
+     * @param isIncrement Whether to increment (true) or decrement (false) the count.
+     */
     public void updateHexCounter(Color playerCol, boolean isIncrement) {
         if (playerCol == Color.RED) {
             numRedHex += (isIncrement) ? 1 : -1;
@@ -115,6 +145,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Temporarily displays a label indicating an invalid move was attempted.
+     */
     public void displayInvalidMove() {
         invalidMoveLabel.setVisible(true);
         circle.setVisible(false);
@@ -129,6 +162,12 @@ public class Controller {
         pause.play();
     }
 
+    /**
+     * Changes the fill colour of a polygon(hexagon) based on its ID.
+     *
+     * @param id The ID of the polygon(hexagon).
+     * @param color The colour to apply.
+     */
     public void polygonSetColor(String id, Color color) {
         for (Node n : parent.getChildrenUnmodifiable()) {
             if (n instanceof Polygon && n.getId().equals(id)) {
@@ -139,6 +178,9 @@ public class Controller {
 
     }
 
+    /**
+     * Switches the active player and updates the UI accordingly.
+     */
     void switchTurn() {
         if (currentPlayer == redPlayer) {
             currentPlayer = bluePlayer;
@@ -156,11 +198,17 @@ public class Controller {
         }
     }
 
-    @FXML // function for quit button functionality
+    /**
+     * Exits the application.
+     */
+    @FXML
     void quitApp() {
         System.exit(0);
     }
 
+    /**
+     * Resets the game board and counters to their initial state.
+     */
     @FXML
     void resetGame() {
         for (Hexagon hex : board.board) {
@@ -176,7 +224,11 @@ public class Controller {
         }
     }
 
-
+    /**
+     * Enables the highlighting of a hexagon when hovered, if it's a valid move.
+     *
+     * @param event The mouse event triggering the preview.
+     */
     @FXML
     void getMovePreview(MouseEvent event) {
         Polygon polygon = (Polygon) event.getSource();
@@ -187,6 +239,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Resets the colour of a hexagon to grey after the hover
+     *
+     * @param event The mouse event that ends the preview.
+     */
     @FXML
     void resetMovePreview(MouseEvent event) {
         Polygon polygon = (Polygon) event.getSource();
@@ -196,6 +253,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Highlights a hexagon for preview using a light shade of the current player's colour.
+     *
+     * @param polygonId The ID of the polygon to highlight.
+     */
     @FXML
     public void previewMove(String polygonId) {
         if (currentPlayer.getColor() == Color.BLUE) {
@@ -205,6 +267,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Initialises the controller and game state when the scene is first loaded.
+     */
     @FXML
     void initialize() {
         colorGrey = (Color) q0r0s0.getFill();
