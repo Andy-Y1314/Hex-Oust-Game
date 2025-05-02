@@ -67,6 +67,8 @@ public class Hexagon {
      * @param r The r coordinate.
      * @param s The s coordinate.
      * @return A string in the format "q{q}r{r}s{s}" where negatives are appended with m in front.
+     *
+     * e.g. (q = 4, r = -4, s = 0) would become "q4rm1s0"
      */
     public static String coordinatesToId(int q, int r, int s) {
         return "q" + ((q < 0) ? "m" + Math.abs(q) : Integer.toString(q)) +
