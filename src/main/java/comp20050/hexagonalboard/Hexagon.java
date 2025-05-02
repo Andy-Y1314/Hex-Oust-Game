@@ -6,7 +6,7 @@ import static comp20050.hexagonalboard.Controller.colorGrey;
 /**
  * Class for the hexagons in the hexagonal board game.
  * Each Hexagon has a unique ID derived from the cubic coordinates (q, r, s).
- * Each Hexagon also have colours (Red or Blue) that represents which player made a move
+ * Each Hexagon also has a colour (Red or Blue) that represents which player made a move
  * on that specific hexagon, or if the hexagon is grey, indicates no player's made a move on that hexagon.
  *
  */
