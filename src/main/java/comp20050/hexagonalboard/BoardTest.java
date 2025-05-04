@@ -47,7 +47,6 @@ public class BoardTest {
         Board input = new Board(7);
         Hexagon hex = input.getHexagonById("q0r0s0");
 
-        //Creating a list of all the expected neighbours the 'getNeighbours' method should return for hexagon q0r0s0
         List<Hexagon> neighbours = input.getNeighbours(hex);
         List<String> neighbourIds = neighbours.stream().map(Hexagon::getId).toList();
 
@@ -75,7 +74,6 @@ public class BoardTest {
         Board input = new Board(6);
         Hexagon hex = input.getHexagonById("q6rm6s0");
 
-        //Creating a list of all the expected neighbours the 'getNeighbours' method should return for hexagon q0r0s0
         List<Hexagon> neighbours = input.getNeighbours(hex);
         List<String> neighbourIds = neighbours.stream().map(Hexagon::getId).toList();
 
@@ -89,7 +87,6 @@ public class BoardTest {
         Board input = new Board(6);
         Hexagon hex = input.getHexagonById("q6rm6s0");
 
-        //Creating a list of all the expected neighbours the 'getNeighbours' method should return for hexagon q0r0s0
         List<Hexagon> neighbours = input.getNeighbours(hex);
         List<String> neighbourIds = neighbours.stream().map(Hexagon::getId).toList();
 
